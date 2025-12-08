@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Profile Card</title>
+</head>
+
+<body>
+    <div id="app">
+        <button id="theme-toggle" aria-label="Alternar tema">
+            <span id="theme-icon">🌞</span>
+            Tema
+        </button>
+
+        <div id="loader" role="status" aria-live="polite">
+            Carregando...
+        </div>
+
+        <div class="card" aria-label="Cartão de perfil do usuário">
+            <img id="avatar" alt="Foto de perfil do usuário">
+
+            <h1 id="name"></h1>
+            <p id="bio"></p>
+
+            <div class="social">
+                <a id="github" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                </a>
+
+                <a id="linkedin" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/theme.js"></script>
+</body>
+
+</html>

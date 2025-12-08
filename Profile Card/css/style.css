@@ -1,0 +1,172 @@
+* {
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+:root {
+    --bg: #f5f5f5;
+    --text: #333;
+    --card-bg: #fff;
+
+    /* Suavidade no tema */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dark-theme {
+    --bg: #110000;
+    --text: aliceblue;
+    --card-bg: #1c1c1c;
+
+    /* Suavidade no tema */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#loader {
+    margin-bottom: 16px;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+#loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lucida Sans';
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.card {
+    width: 100%;
+    max-width: 360px;
+    padding: 24px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s, transform 0.2s;
+}
+
+.card.ready {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.social a {
+    margin: 0 8px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: transparent;
+    transition: background 0.2s;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.social a:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .social a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+/* Botão de tema com ícone */
+#theme-toggle {
+    border: none;
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+}
+
+/* Ícone animado */
+#theme-icon {
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.dark-theme #theme-icon {
+    transform: rotate(180deg);
+}
+
+/* Telas pequenas (celulares 320px–380px) */
+@media (max-width: 380px) {
+    .card {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .card img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .social a {
+        margin: 0 4px;
+        padding: 6px 8px;
+        font-size: 0.85rem;
+    }
+
+    #theme-toggle {
+        padding: 6px 12px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Tablets pequenos (600–900px) */
+@media (min-width: 600px) and (max-width: 900px) {
+    .card {
+        max-width: 420px;
+        padding: 32px;
+    }
+
+    .card img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .social a {
+        font-size: 1rem;
+    }
+}
+
+/* Monitores maiores */
+@media (min-width: 1200px) {
+    .card {
+        max-width: 420px;
+        padding: 32px;
+        transform: scale(1.02);
+    }
+}

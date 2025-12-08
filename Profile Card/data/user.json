@@ -1,0 +1,9 @@
+{
+  "name": "Fábio Júnior",
+  "bio": "Desenvolvedor.",
+  "avatar": "./assets/img/avatar.png",
+  "social": {
+    "github": "https://github.com/fabiojnrdev",
+    "linkedin": "https://linkedin.com/in/fabiojnrdev"
+  }
+}
