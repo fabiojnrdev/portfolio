@@ -1,13 +1,13 @@
 
-# 📌 **README.md**
+# 📌 **Documentação**
 
 ```md
-# Profile Card
+# Repositório - Profile Card
 
 Um cartão de perfil simples e responsivo que carrega os dados dinamicamente a partir de um arquivo JSON.  
 Inclui suporte a tema claro e escuro, animações suaves e adaptação automática ao tema do sistema.
 
-## 🚀 Tecnologias
+## 🚀 Stacks
 
 - HTML
 - CSS
@@ -50,8 +50,8 @@ Inclui suporte a tema claro e escuro, animações suaves e adaptação automáti
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seuusuario/seurepositorio.git
-cd seurepositorio
+git clone https://github.com/fabiojnrdev/profilecard.git
+cd profilecard
 ````
 
 ### 2. Rode com um servidor local
@@ -111,3 +111,4 @@ Este projeto é open-source. Use como quiser.
 
 Se quiser, posso personalizar com badges, GIF de preview, instruções mais avançadas ou uma seção de “melhorias futuras”.
 ```
+
