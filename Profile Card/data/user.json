@@ -1,9 +1,10 @@
 {
   "name": "Fábio Júnior",
-  "bio": "Desenvolvedor.",
+  "bio": "Desenvolvedor e estudante de Ciência da Computação no 3º Período.",
   "avatar": "./assets/img/avatar.png",
   "social": {
     "github": "https://github.com/fabiojnrdev",
     "linkedin": "https://linkedin.com/in/fabiojnrdev"
   }
 }
+
