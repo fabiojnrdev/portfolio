@@ -1,10 +1,91 @@
 {
   "name": "Fábio Júnior",
-  "bio": "Desenvolvedor e estudante de Ciência da Computação no 3º Período.",
+  "firstName": "Fábio",
+  "lastName": "Júnior",
+  "label": "Desenvolvedor & Estudante",
+  "bio": "Estudante de Ciência da Computação no 3º Período, apaixonado por construir interfaces limpas e sistemas bem arquitetados.",
   "avatar": "./assets/img/avatar.png",
+  "contact": {
+    "tagline": "Aberto a oportunidades e colaborações",
+    "sub": "Seja um projeto freelance, estágio, ou só uma conversa sobre tecnologia — pode entrar em contato.",
+    "email": "contato@fabiojnr.dev"
+  },
+  "stats": [
+    { "value": "3°",  "label": "Período"     },
+    { "value": "12+", "label": "Projetos"    },
+    { "value": "4+",  "label": "Tecnologias" }
+  ],
   "social": {
-    "github": "https://github.com/fabiojnrdev",
+    "github":   "https://github.com/fabiojnrdev",
     "linkedin": "https://linkedin.com/in/fabiojnrdev"
-  }
+  },
+  "projects": [
+    {
+      "featured": false,
+      "title": "",
+      "description": "Cartão de perfil responsivo com tema dark/light, carregamento dinâmico via JSON e detecção automática de preferência do sistema.",
+      "tags": ["HTML", "CSS", "JavaScript"],
+      "url": ""
+    },
+    {
+      "featured": false,
+      "title": "GenAI Food",
+      "description": "API simulada de um agente para restaurante, que envolve machine learning e aceleração de processos em demandas.",
+      "tags": ["Python",  "FastAPI"],
+      "url": "https://github.com/fabiojnrdev/genai_food"
+    },
+    {
+      "featured": false,
+      "title": "Projeto 03",
+      "description": "Descrição breve do projeto. Edite em user.json.",
+      "tags": ["JavaScript"],
+      "url": "#"
+    },
+    {
+      "featured": false,
+      "title": "Projeto 04",
+      "description": "Descrição breve do projeto. Edite em user.json.",
+      "tags": ["CSS"],
+      "url": "#"
+    },
+    {
+      "featured": false,
+      "title": "Projeto 05",
+      "description": "Descrição breve do projeto. Edite em user.json.",
+      "tags": ["JS", "API"],
+      "url": "#"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Frontend",
+      "items": ["HTML5", "CSS3", "JavaScript", "Fetch API"]
+    },
+    {
+      "group": "Ferramentas",
+      "items": ["Git & GitHub", "VS Code", "Live Server", "Node.js"]
+    },
+    {
+      "group": "Fundamentos",
+      "items": ["Algoritmos", "Estrutura de Dados", "Lógica de Programação", "POO"]
+    },
+    {
+      "group": "Aprendendo",
+      "items": ["React", "Python", "SQL", "TypeScript"]
+    }
+  ],
+  "experience": [
+    {
+      "period": "2024 — Atual",
+      "title": "Ciência da Computação",
+      "org": "Universidade — 3º Período",
+      "description": "Cursando bacharelado com foco em fundamentos de computação, algoritmos, estruturas de dados e desenvolvimento de software."
+    },
+    {
+      "period": "2023",
+      "title": "Início no desenvolvimento web",
+      "org": "Autodidata",
+      "description": "Primeiros projetos pessoais com HTML, CSS e JavaScript. Construção de interfaces responsivas e aprendizado de boas práticas."
+    }
+  ]
 }
-

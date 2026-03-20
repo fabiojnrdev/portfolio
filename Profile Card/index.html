@@ -2,46 +2,124 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light dark">
-
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Profile Card</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Fábio Júnior — Desenvolvedor e Estudante de Ciência da Computação">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <title id="page-title">Portfólio</title>
 </head>
 
 <body>
-    <div id="app">
-        <button id="theme-toggle" aria-label="Alternar tema">
-            <span id="theme-icon">🌞</span>
-            Tema
-        </button>
 
-        <div id="loader" role="status" aria-live="polite">
-            Carregando...
-        </div>
-
-        <div class="card" aria-label="Cartão de perfil do usuário">
-            <img id="avatar" alt="Foto de perfil do usuário">
-
-            <h1 id="name"></h1>
-            <p id="bio"></p>
-
-            <div class="social">
-                <a id="github" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                </a>
-
-                <a id="linkedin" target="_blank" rel="noopener noreferrer">
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo" id="nav-name">Carregando...</div>
+    <div class="nav-links">
+      <a href="#projetos">Projetos</a>
+      <a href="#habilidades">Stack</a>
+      <a href="#experiencias">Experiência</a>
+      <a href="#contato">Contato</a>
     </div>
+    <button class="nav-menu" id="nav-menu" aria-label="Abrir menu">&#9776;</button>
+  </nav>
 
-    <script src="./js/main.js"></script>
-    <script src="./js/theme.js"></script>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="#projetos" class="mobile-link">Projetos</a>
+    <a href="#habilidades" class="mobile-link">Stack</a>
+    <a href="#experiencias" class="mobile-link">Experiência</a>
+    <a href="#contato" class="mobile-link">Contato</a>
+  </div>
+
+  <!-- LOADER -->
+  <div id="loader" role="status" aria-live="polite">
+    <div class="loader-inner"></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-text fade-up">
+      <div class="hero-label" id="hero-label">Desenvolvedor & Estudante</div>
+      <h1 id="hero-name"><!-- preenchido via JS --></h1>
+      <p class="hero-bio" id="hero-bio"><!-- preenchido via JS --></p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('projetos').scrollIntoView({behavior:'smooth'})">Ver projetos</button>
+        <button class="btn-ghost" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Entrar em contato</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="avatar-wrap">
+        <div class="avatar-frame">
+          <img id="avatar" alt="Foto de perfil" style="display:none;">
+          <div class="avatar-placeholder" id="avatar-placeholder">FJ</div>
+        </div>
+      </div>
+      <div class="hero-stats" id="hero-stats">
+        <!-- preenchido via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section id="projetos">
+    <div class="section-header fade-up">
+      <h2 class="section-title">Projetos <em>selecionados</em></h2>
+      <span class="section-count" id="projects-count"></span>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+      <!-- preenchido via JS -->
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="section-header fade-up">
+      <h2 class="section-title">Stack & <em>Habilidades</em></h2>
+      <span class="section-count">Tecnologias</span>
+    </div>
+    <div class="skills-grid" id="skills-grid">
+      <!-- preenchido via JS -->
+    </div>
+  </section>
+
+  <!-- EXPERIÊNCIAS -->
+  <section id="experiencias">
+    <div class="section-header fade-up">
+      <h2 class="section-title">Minha <em>trajetória</em></h2>
+      <span class="section-count">Formação</span>
+    </div>
+    <div class="experience-list" id="experience-list">
+      <!-- preenchido via JS -->
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="section-header fade-up">
+      <h2 class="section-title">Vamos <em>conversar</em></h2>
+      <span class="section-count">Contato</span>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-up">
+        <p class="contact-tagline" id="contact-tagline"><!-- preenchido via JS --></p>
+        <p class="contact-sub" id="contact-sub"><!-- preenchido via JS --></p>
+      </div>
+      <div class="contact-links" id="contact-links">
+        <!-- preenchido via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy" id="footer-copy"></span>
+    <span class="footer-made">Feito com HTML, CSS &amp; JS</span>
+  </footer>
+
+  <script src="./js/main.js"></script>
+
 </body>
-
 </html>
