@@ -1,115 +1,98 @@
+# Portfólio — Fábio Júnior
 
-# 📌 **Documentação**
+Vitrine pessoal dark & gold. Todos os dados são carregados dinamicamente via `data/user.json` — nenhuma linha de HTML precisa ser editada para atualizar o conteúdo.
 
-```md
-# Repositório - Profile Card
+## Stacks
 
-Um cartão de perfil simples e responsivo que carrega os dados dinamicamente a partir de um arquivo JSON.  
-Inclui suporte a tema claro e escuro, animações suaves e adaptação automática ao tema do sistema.
+- HTML5 semântico
+- CSS3 (variáveis, grid, animações)
+- JavaScript vanilla (Fetch API, IntersectionObserver)
 
-## 🚀 Stacks
-
-- HTML
-- CSS
-- JavaScript
-- Fetch API
-- Tema dark/light com `localStorage`
-
-## 📁 Estrutura do projeto
+## Estrutura
 
 ```
-
 /
 ├── assets/
-│   ├── icons/
-│   │   └── github.svg
 │   └── img/
-│       └── avatar.png
+│       └── avatar.png        ← Substitua pela sua foto
 ├── css/
 │   └── style.css
 ├── data/
-│   └── user.json
+│   └── user.json             ← Edite aqui para atualizar tudo
 ├── js/
-│   ├── main.js
-│   └── theme.js
+│   └── main.js
 ├── index.html
 └── README.md
+```
 
-````
+## Como personalizar
 
-## ✨ Funcionalidades
+Edite apenas o `data/user.json`:
 
-- Carregamento do perfil via **JSON externo**
-- Tema claro/escuro com **detecção automática do sistema**
-- Salvamento da preferência no **localStorage**
-- Animações leves no carregamento e ao trocar o tema
-- Layout responsivo com breakpoints para telas pequenas e tablets
+```json
+{
+  "name": "Seu Nome",
+  "label": "Sua profissão",
+  "bio": "Sua bio curta.",
+  "avatar": "./assets/img/avatar.png",
+  "contact": {
+    "tagline": "Aberto a oportunidades e colaborações",
+    "sub": "Mensagem de convite ao contato.",
+    "email": "seu@email.com"
+  },
+  "stats": [
+    { "value": "3°",  "label": "Período"  },
+    { "value": "10+", "label": "Projetos" }
+  ],
+  "social": {
+    "github":   "https://github.com/seuuser",
+    "linkedin": "https://linkedin.com/in/seuuser"
+  },
+  "projects": [
+    {
+      "featured": true,
+      "title": "Nome do projeto",
+      "description": "Descrição breve.",
+      "tags": ["HTML", "CSS", "JS"],
+      "url": "https://github.com/seuuser/projeto"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Frontend",
+      "items": ["HTML5", "CSS3", "JavaScript"]
+    }
+  ],
+  "experience": [
+    {
+      "period": "2024 — Atual",
+      "title": "Título da experiência",
+      "org": "Empresa ou instituição",
+      "description": "Descrição da experiência."
+    }
+  ]
+}
+```
 
-## 📦 Como rodar
+## Como rodar
 
-### 1. Clone o repositório
+O `fetch()` não funciona abrindo o arquivo direto pelo navegador. Use um servidor local:
 
-```bash
-git clone https://github.com/fabiojnrdev/profilecard.git
-cd profilecard
-````
+**VS Code — Live Server:**
+Abra o projeto e clique em **Go Live**.
 
-### 2. Rode com um servidor local
-
-(O `fetch()` não funciona abrindo o arquivo direto pelo navegador.)
-
-Se estiver usando VS Code:
-
-* Abra o projeto
-* Clique em **Go Live** (Live Server)
-
-Ou use Node:
-
+**Node:**
 ```sh
 npx http-server .
 ```
 
-Ou Python:
-
+**Python:**
 ```sh
 python -m http.server
 ```
 
-Depois acesse:
+Acesse `http://localhost:8000` (ou a porta exibida).
 
-```
-http://localhost:8000
-```
+## Licença
 
-(ou a porta que aparecer)
-
-## 📝 JSON de exemplo
-
-```json
-{
-  "name": "Seu nome",
-  "bio": "******",
-  "avatar": "./assets/img/avatar.png",
-  "social": {
-    "github": "https://github.com/seusername",
-    "linkedin": "https://linkedin.com/in/seusername"
-  }
-}
-```
-
-## 🎨 Screenshot (opcional)
-
-Adicione aqui quando quiser.
-
-## 📄 Licença
-
-Este projeto é open-source. Use como quiser.
-
-```
-
----
-
-Se quiser, posso personalizar com badges, GIF de preview, instruções mais avançadas ou uma seção de “melhorias futuras”.
-```
-
-
+Open-source. Use como quiser.
