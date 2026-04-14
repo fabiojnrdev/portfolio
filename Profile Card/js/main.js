@@ -208,7 +208,14 @@ function renderContact(user) {
       href: user.social.linkedin
     });
   }
-
+  if (user.social?.instagram){
+    const handle = user.social.instagram.replace("https://instagram.com/", "");
+    contactItems.push({
+      label: "Instagram",
+      value: handle,
+      href: user.social.instagram
+    });
+  }
   if (user.contact?.email) {
     contactItems.push({
       label: "Email",

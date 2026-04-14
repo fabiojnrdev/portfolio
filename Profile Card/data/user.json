@@ -12,20 +12,21 @@
   },
   "stats": [
     { "value": "3°",  "label": "Período"     },
-    { "value": "12+", "label": "Projetos"    },
-    { "value": "4+",  "label": "Tecnologias" }
+    { "value": "15+", "label": "Projetos"    },
+    { "value": "7+",  "label": "Tecnologias" }
   ],
   "social": {
+    "instagram": "https://instagram.com/fabiojnr.dev",
     "github":   "https://github.com/fabiojnrdev",
     "linkedin": "https://linkedin.com/in/fabiojnrdev"
   },
   "projects": [
     {
       "featured": false,
-      "title": "",
-      "description": "Cartão de perfil responsivo com tema dark/light, carregamento dinâmico via JSON e detecção automática de preferência do sistema.",
-      "tags": ["HTML", "CSS", "JavaScript"],
-      "url": ""
+      "title": "Audit System",
+      "description": "Sistema de auditoria empresarial com interceptação automática de eventos, dashboard em tempo real, exportação com integridade criptográfica e WebSocket para logs ao vivo.",
+      "tags": ["Python", "JavaScript"],
+      "url": "https://github.com/fabiojnrdev/audit-system"
     },
     {
       "featured": false,
@@ -36,8 +37,8 @@
     },
     {
       "featured": false,
-      "title": "Projeto 03",
-      "description": "Api simulada de um gerenciamento de produtos geek, com autenticação, CRUD e integração com frontend em React.",
+      "title": "Geek API",
+      "description": "Api Fullstack simulada de um gerenciamento de produtos geek, com autenticação, CRUD e integração com frontend em React.",
       "tags": ["FastAPI", "Python", "React", "TypeScript"],
       "url": "https://github.com/fabiojnrdev/geek_api"
     },
@@ -50,10 +51,17 @@
     },
     {
       "featured": false,
-      "title": "Projeto 05",
-      "description": "Descrição breve do projeto. Edite em user.json.",
-      "tags": ["JS", "API"],
-      "url": "#"
+      "title": "Task List",
+      "description": "Meu primeiro projeto usando 100% da stack Java",
+      "tags": ["Java"],
+      "url": "https://github.com/fabiojnrdev/todolist"
+    },
+    {
+      "featured": false,
+      "title": "Expense Manager - em desenvolvimento",
+      "description": "Gerenciador de despesas que o usuário insere despesas via terminal (ou arquivo CSV), o script agrupa por categoria, calcula totais e exporta um PDF com tabela formatada e gráfico de pizza.",
+      "tags": ["Python"],
+      "url": "https://github.com/fabiojnrdev/expense-manager"
     }
   ],
   "skills": [
@@ -67,7 +75,7 @@
     },
     {
       "group": "Ferramentas",
-      "items": ["Git & GitHub", "VS Code", "Live Server", "Node.js"]
+      "items": ["Git & GitHub", "VS Code", "Claude", "Grok", "Docker"]
     },
     {
       "group": "Fundamentos",
