@@ -8,7 +8,7 @@
   "contact": {
     "tagline": "Aberto a oportunidades e colaborações",
     "sub": "Seja um projeto freelance, estágio, ou só uma conversa sobre tecnologia — pode entrar em contato.",
-    "email": "contato@fabiojnr.dev"
+    "email": "fabiojnr.dev@gmail.com"
   },
   "stats": [
     { "value": "3°",  "label": "Período"     },
@@ -37,16 +37,16 @@
     {
       "featured": false,
       "title": "Projeto 03",
-      "description": "Descrição breve do projeto. Edite em user.json.",
-      "tags": ["JavaScript"],
-      "url": "#"
+      "description": "Api simulada de um gerenciamento de produtos geek, com autenticação, CRUD e integração com frontend em React.",
+      "tags": ["FastAPI", "Python", "React", "TypeScript"],
+      "url": "https://github.com/fabiojnrdev/geek_api"
     },
     {
       "featured": false,
-      "title": "Projeto 04",
-      "description": "Descrição breve do projeto. Edite em user.json.",
-      "tags": ["CSS"],
-      "url": "#"
+      "title": "Akairo CLI",
+      "description": "Uma ferramenta simples que funciona no terminal. Sua finalidade é: renomear arquivos em lote, converter imagens e organizar PDFs.",
+      "tags": ["Python"],
+      "url": "https://github.com/fabiojnrdev/akairocli"
     },
     {
       "featured": false,
@@ -61,6 +61,10 @@
       "group": "Frontend",
       "items": ["HTML5", "CSS3", "JavaScript", "Fetch API"]
     },
+     {
+      "group": "Backend",
+      "items": ["APIs REST", "Django", "FastAPI"]
+    },
     {
       "group": "Ferramentas",
       "items": ["Git & GitHub", "VS Code", "Live Server", "Node.js"]
@@ -71,15 +75,21 @@
     },
     {
       "group": "Aprendendo",
-      "items": ["React", "Python", "SQL", "TypeScript"]
+      "items": ["React", "Java", "SQL", "TypeScript", "Machine Learning"]
     }
   ],
   "experience": [
     {
-      "period": "2024 — Atual",
+      "period": "2025 — Atual",
       "title": "Ciência da Computação",
-      "org": "Universidade — 3º Período",
-      "description": "Cursando bacharelado com foco em fundamentos de computação, algoritmos, estruturas de dados e desenvolvimento de software."
+      "org": "UniFAPI — 3º Período",
+      "description": "Cursando bacharelado em Ciência da Computação pela UniFAPI, com foco em fundamentos de computação, algoritmos, estruturas de dados e desenvolvimento de software."
+    },
+    {
+      "period": "2023 — 2024",
+      "title": "Técnico em Desenvolvimento de Sistemas",
+      "org": "Instituto Federal do Piauí — Concluído",
+      "description": "Curso técnico com ênfase em desenvolvimento de software, onde adquiri conhecimentos práticos em linguagens de programação, bancos de dados e metodologias ágeis."
     },
     {
       "period": "2023",
