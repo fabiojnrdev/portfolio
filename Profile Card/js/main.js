@@ -24,13 +24,21 @@ async function loadPortfolio() {
     renderFooter(user);
 
     // Initialize scroll animations after DOM updates
-    setTimeout(initScrollAnimations, 100);
+    setTimeout(() => {
+      initScrollAnimations();
+      animateStats();
+    }, 100);
 
   } catch (err) {
     console.error("Erro ao carregar portfólio:", err);
     renderError();
   } finally {
-    loader.classList.add("hidden");
+    // Animate loader out before hiding
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 300);
   }
 }
 
@@ -68,6 +76,7 @@ function renderHero(user) {
     img.onload = () => {
       img.style.display = "block";
       placeholder.style.display = "none";
+      img.classList.add("fade-in");
     };
 
     img.onerror = () => {
@@ -89,8 +98,8 @@ function renderHero(user) {
   // Stats
   if (Array.isArray(user.stats)) {
     const statsEl = document.getElementById("hero-stats");
-    statsEl.innerHTML = user.stats.map(s => `
-      <div class="stat-item">
+    statsEl.innerHTML = user.stats.map((s, index) => `
+      <div class="stat-item fade-up" style="animation-delay: ${index * 0.1}s">
         <div class="stat-num">${s.value}</div>
         <div class="stat-label">${s.label}</div>
       </div>
@@ -118,7 +127,7 @@ function renderProjects(projects) {
       : `href="#" tabindex="-1"`;
 
     return `
-      <div class="project-card ${featured} fade-up">
+      <div class="project-card ${featured} fade-up" style="animation-delay: ${i * 0.1}s">
         <div class="proj-num">${num}</div>
         <div>
           <div class="proj-title">${p.title}</div>
@@ -141,16 +150,16 @@ function renderSkills(skills) {
 
   const grid = document.getElementById("skills-grid");
 
-  grid.innerHTML = skills.map(group => {
+  grid.innerHTML = skills.map((group, groupIndex) => {
     const items = (group.items || [])
-      .map(item => `
-        <div class="skill-item">
+      .map((item, itemIndex) => `
+        <div class="skill-item fade-up" style="animation-delay: ${(groupIndex * 0.2) + (itemIndex * 0.1)}s">
           <span class="skill-dot"></span>${item}
         </div>
       `).join("");
 
     return `
-      <div class="skill-group fade-up">
+      <div class="skill-group fade-up" style="animation-delay: ${groupIndex * 0.2}s">
         <div class="skill-group-title">${group.group}</div>
         ${items}
       </div>
@@ -164,8 +173,8 @@ function renderExperience(experience) {
 
   const list = document.getElementById("experience-list");
 
-  list.innerHTML = experience.map(exp => `
-    <div class="exp-item fade-up">
+  list.innerHTML = experience.map((exp, index) => `
+    <div class="exp-item fade-up" style="animation-delay: ${index * 0.2}s">
       <div class="exp-period">${exp.period}</div>
       <div>
         <div class="exp-title">${exp.title}</div>
@@ -227,8 +236,8 @@ function renderContact(user) {
     });
   }
 
-  links.innerHTML = contactItems.map(item => `
-    <a class="contact-link" href="${item.href}" target="_blank" rel="noopener noreferrer">
+  links.innerHTML = contactItems.map((item, index) => `
+    <a class="contact-link fade-up" href="${item.href}" target="_blank" rel="noopener noreferrer" style="animation-delay: ${index * 0.1}s">
       <span class="contact-link-label">${item.label}</span>
       <span class="contact-link-value">${item.value}</span>
       <span class="contact-link-arrow">↗</span>
@@ -304,6 +313,32 @@ function initMobileMenu() {
       menu.classList.remove("open");
       menu.setAttribute("aria-hidden", "true");
     });
+  });
+}
+
+/* ── STATS ANIMATION ────────────────────────────────────── */
+function animateStats() {
+  const statItems = document.querySelectorAll(".stat-item");
+
+  statItems.forEach((item, index) => {
+    setTimeout(() => {
+      const numEl = item.querySelector(".stat-num");
+      const targetValue = parseInt(numEl.textContent.replace(/[^\d]/g, "")) || 0;
+      const isPercentage = numEl.textContent.includes("%");
+
+      let currentValue = 0;
+      const increment = targetValue / 60; // 60 frames for smooth animation
+      const timer = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= targetValue) {
+          currentValue = targetValue;
+          clearInterval(timer);
+        }
+        numEl.textContent = isPercentage
+          ? `${Math.floor(currentValue)}%`
+          : Math.floor(currentValue).toString().padStart(2, "0");
+      }, 30);
+    }, index * 200); // Stagger the animations
   });
 }
 
