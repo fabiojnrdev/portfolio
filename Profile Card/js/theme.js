@@ -12,6 +12,16 @@ function applyTheme(theme) {
   }
 }
 
+function lightTheme() {
+  applyTheme("light");
+  localStorage.setItem("theme", "light");
+}
+
+function darkTheme() {
+  applyTheme("dark");
+  localStorage.setItem("theme", "dark");
+}
+
 function getSystemTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
@@ -49,4 +59,5 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e)
   }
 });
 
+// Initialize theme on load
 initTheme();

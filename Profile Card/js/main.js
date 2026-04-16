@@ -8,7 +8,9 @@ async function loadPortfolio() {
   try {
     loader.classList.remove("hidden");
 
-    const res = await fetch("./data/user.json");
+    const res = await fetch("./data/user.json", {
+      cache: 'force-cache'
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const user = await res.json();
@@ -21,7 +23,8 @@ async function loadPortfolio() {
     renderContact(user);
     renderFooter(user);
 
-    initScrollAnimations();
+    // Initialize scroll animations after DOM updates
+    setTimeout(initScrollAnimations, 100);
 
   } catch (err) {
     console.error("Erro ao carregar portfólio:", err);
