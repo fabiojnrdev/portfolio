@@ -9,7 +9,7 @@ async function loadPortfolio() {
     loader.classList.remove("hidden");
 
     const res = await fetch("./data/user.json", {
-      cache: 'force-cache'
+      cache: "no-cache"
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -24,10 +24,10 @@ async function loadPortfolio() {
     renderFooter(user);
 
     // Initialize scroll animations after DOM updates
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       initScrollAnimations();
       animateStats();
-    }, 100);
+    });
 
   } catch (err) {
     console.error("Erro ao carregar portfólio:", err);
@@ -69,31 +69,56 @@ function renderHero(user) {
     user.bio || "";
 
   // Avatar
-  if (user.avatar) {
-    const img = document.getElementById("avatar");
-    const placeholder = document.getElementById("avatar-placeholder");
+  const img = document.getElementById("avatar");
+  const placeholder = document.getElementById("avatar-placeholder");
+  img.alt = user.avatarAlt || `Foto de perfil de ${user.name || "perfil"}`;
+  img.classList.remove("fade-in");
+  placeholder.style.display = "flex";
 
-    img.onload = () => {
-      img.style.display = "block";
-      placeholder.style.display = "none";
+  const fallbackAvatar = "./assets/img/avatar.png";
+  const primaryAvatar = user.avatar || fallbackAvatar;
+  let hasTriedFallback = false;
+
+  const showAvatar = () => {
+    placeholder.style.display = "none";
+    requestAnimationFrame(() => {
       img.classList.add("fade-in");
-    };
+    });
+  };
 
-    img.onerror = () => {
-      img.style.display = "none";
-      placeholder.style.display = "flex";
-      // Iniciais como fallback
-      const initials = (user.name || "")
-        .split(" ")
-        .map(w => w[0])
-        .slice(0, 2)
-        .join("")
-        .toUpperCase();
-      placeholder.textContent = initials || "?";
-    };
+  const hideAvatar = () => {
+    if (!hasTriedFallback && primaryAvatar !== fallbackAvatar) {
+      hasTriedFallback = true;
+      img.src = fallbackAvatar;
+      return;
+    }
 
-    img.src = user.avatar;
-  }
+    placeholder.style.display = "flex";
+    img.classList.remove("fade-in");
+    const initials = (user.name || "")
+      .split(" ")
+      .map(w => w[0])
+      .slice(0, 2)
+      .join("")
+      .toUpperCase();
+    placeholder.textContent = initials || "?";
+  };
+
+  img.onload = showAvatar;
+  img.onerror = hideAvatar;
+
+  img.src = primaryAvatar;
+
+  // Check immediately after setting src (para imagens em cache)
+  requestAnimationFrame(() => {
+    if (img.complete) {
+      if (img.naturalWidth > 0) {
+        showAvatar();
+      } else {
+        hideAvatar();
+      }
+    }
+  });
 
   // Stats
   if (Array.isArray(user.stats)) {
@@ -236,20 +261,34 @@ function renderContact(user) {
     });
   }
 
-  links.innerHTML = contactItems.map((item, index) => `
-    <a class="contact-link fade-up" href="${item.href}" target="_blank" rel="noopener noreferrer" style="animation-delay: ${index * 0.1}s">
-      <span class="contact-link-label">${item.label}</span>
-      <span class="contact-link-value">${item.value}</span>
-      <span class="contact-link-arrow">↗</span>
-    </a>
-  `).join("");
+  links.innerHTML = contactItems.map((item, index) => {
+    const attrs = item.href.startsWith("mailto:")
+      ? `href="${item.href}"`
+      : `href="${item.href}" target="_blank" rel="noopener noreferrer"`;
+
+    return `
+      <a class="contact-link fade-up" ${attrs} style="animation-delay: ${index * 0.1}s">
+        <span class="contact-link-label">${item.label}</span>
+        <span class="contact-link-value">${item.value}</span>
+        <span class="contact-link-arrow">↗</span>
+      </a>
+    `;
+  }).join("");
 }
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 function renderFooter(user) {
   const year = new Date().getFullYear();
+  const author = user.firstName || user.name || "";
+  const madeBy = user.madeBy || user.madeWith || author;
+
   document.getElementById("footer-copy").textContent =
-    `© ${year} ${user.name || ""}`;
+    `© ${year} ${author}`;
+
+  const madeEl = document.getElementById("footer-made");
+  if (madeEl) {
+    madeEl.textContent = madeBy ? `Made with ♥ by ${madeBy}` : "";
+  }
 }
 
 /* ── ERROR STATE ─────────────────────────────────────────── */
@@ -317,6 +356,126 @@ function initMobileMenu() {
 }
 
 /* ── STATS ANIMATION ────────────────────────────────────── */
+function animateStats() {
+  const statItems = document.querySelectorAll(".stat-item");
+
+  statItems.forEach((item, index) => {
+    const numEl = item.querySelector(".stat-num");
+    if (!numEl) return;
+
+    const rawText = numEl.textContent.trim();
+    const numericMatch = rawText.match(/-?\d+/);
+    const targetValue = numericMatch ? Number(numericMatch[0]) : 0;
+    const prefix = numericMatch ? rawText.slice(0, numericMatch.index) : "";
+    const suffix = numericMatch ? rawText.slice(numericMatch.index + numericMatch[0].length) : "";
+    const duration = 600;
+    let start = null;
+    const delay = index * 100;
+
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      if (elapsed < delay) {
+        requestAnimationFrame(step);
+        return;
+      }
+
+      const progress = Math.min((elapsed - delay) / duration, 1);
+      const currentValue = Math.round(targetValue * progress);
+      numEl.textContent = `${prefix}${String(currentValue).padStart(2, "0")}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
+  });
+}
+
+/* ── THEME SUPPORT ────────────────────────────────────────── */
+const themeToggleButton = document.getElementById("theme-toggle");
+const themeIcon = document.getElementById("theme-icon");
+const root = document.documentElement;
+
+function safeLocalStorage() {
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+
+const storage = safeLocalStorage();
+
+function setThemeStorage(value) {
+  if (!storage) return;
+  try {
+    storage.setItem("theme", value);
+  } catch (err) {
+    // localStorage blocked or unavailable
+  }
+}
+
+function getThemeStorage() {
+  if (!storage) return null;
+  try {
+    return storage.getItem("theme");
+  } catch {
+    return null;
+  }
+}
+
+function applyTheme(theme) {
+  if (theme === "dark") {
+    root.classList.add("dark-theme");
+    themeIcon.textContent = "🌙";
+  } else {
+    root.classList.remove("dark-theme");
+    themeIcon.textContent = "🌞";
+  }
+}
+
+function getSystemTheme() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function initTheme() {
+  const saved = getThemeStorage();
+  if (saved) {
+    applyTheme(saved);
+  } else {
+    applyTheme(getSystemTheme());
+  }
+}
+
+themeToggleButton?.addEventListener("click", () => {
+  const isDark = root.classList.contains("dark-theme");
+  const next = isDark ? "light" : "dark";
+
+  applyTheme(next);
+  setThemeStorage(next);
+
+  themeIcon.style.transform = "scale(0.8)";
+  requestAnimationFrame(() => {
+    themeIcon.style.transform = "scale(1)";
+  });
+});
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  if (!getThemeStorage()) {
+    applyTheme(e.matches ? "dark" : "light");
+  }
+});
+
+initTheme();
+
+/* ── INIT ────────────────────────────────────────────────── */
+initMobileMenu();
+loadPortfolio();
+
 function animateStats() {
   const statItems = document.querySelectorAll(".stat-item");
 
