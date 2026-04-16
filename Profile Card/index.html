@@ -38,7 +38,7 @@
   </div>
 
   <!-- LOADER -->
-  <div id="loader" role="status" aria-live="polite">
+  <div id="loader" role="status" aria-live="polite" class="fade-up visible">
     <div class="loader-inner"></div>
   </div>
 
@@ -48,12 +48,12 @@
       <div class="hero-label" id="hero-label">Desenvolvedor & Estudante</div>
       <h1 id="hero-name"><!-- preenchido via JS --></h1>
       <p class="hero-bio" id="hero-bio"><!-- preenchido via JS --></p>
-      <div class="hero-actions">
+      <div class="hero-actions fade-up">
         <button class="btn-primary" onclick="document.getElementById('projetos').scrollIntoView({behavior:'smooth'})">Ver projetos</button>
         <button class="btn-ghost" onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Entrar em contato</button>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual fade-right">
       <div class="avatar-wrap">
         <div class="avatar-frame">
           <img id="avatar" alt="Foto de perfil" style="display:none;">
@@ -110,14 +110,14 @@
         <p class="contact-tagline" id="contact-tagline"><!-- preenchido via JS --></p>
         <p class="contact-sub" id="contact-sub"><!-- preenchido via JS --></p>
       </div>
-      <div class="contact-links" id="contact-links">
+      <div class="contact-links fade-left" id="contact-links">
         <!-- preenchido via JS -->
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer class="fade-up">
     <span class="footer-copy" id="footer-copy"></span>
     
   </footer>

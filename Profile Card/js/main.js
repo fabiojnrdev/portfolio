@@ -269,7 +269,8 @@ function initScrollAnimations() {
     });
   }, { threshold: 0.10 });
 
-  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+  // Observe all animation classes
+  document.querySelectorAll(".fade-up, .fade-left, .fade-right").forEach(el => observer.observe(el));
 }
 
 /* ── MOBILE MENU ─────────────────────────────────────────── */
@@ -282,6 +283,19 @@ function initMobileMenu() {
   btn.addEventListener("click", () => {
     const isOpen = menu.classList.toggle("open");
     menu.setAttribute("aria-hidden", String(!isOpen));
+
+    // Animate menu links with stagger
+    if (isOpen) {
+      menu.querySelectorAll(".mobile-link").forEach((link, index) => {
+        link.style.animationDelay = `${index * 0.1}s`;
+        link.classList.add("slide-in");
+      });
+    } else {
+      menu.querySelectorAll(".mobile-link").forEach(link => {
+        link.classList.remove("slide-in");
+        link.style.animationDelay = "";
+      });
+    }
   });
 
   // Fecha ao clicar num link

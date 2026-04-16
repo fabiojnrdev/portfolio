@@ -225,6 +225,7 @@ nav {
 
 .theme-toggle:hover {
   color: var(--gold);
+  transform: rotate(12deg);
 }
 
 .nav-menu {
@@ -235,6 +236,11 @@ nav {
   font-size: 20px;
   cursor: pointer;
   padding: 4px 8px;
+  transition: transform 0.2s ease;
+}
+
+.nav-menu:hover {
+  transform: scale(1.1);
 }
 
 /* ============================================================
@@ -247,10 +253,15 @@ nav {
   border-bottom: 0.5px solid var(--border);
   padding: 1rem 1.5rem;
   gap: 0;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .mobile-menu.open {
   display: flex;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .mobile-link {
@@ -270,6 +281,21 @@ nav {
 
 .mobile-link:hover {
   color: var(--gold);
+}
+
+.mobile-link.slide-in {
+  animation: slideInFromLeft 0.4s ease forwards;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ============================================================
@@ -872,6 +898,89 @@ footer {
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Project number animation */
+.proj-num {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover .proj-num {
+  color: var(--gold);
+  transform: scale(1.1);
+}
+
+/* Project arrow animation */
+.proj-arrow {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateX(0);
+}
+
+.project-card:hover .proj-arrow {
+  transform: translateX(4px);
+  opacity: 0.8;
+}
+
+/* Button hover animations */
+.btn-primary, .btn-ghost {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover, .btn-ghost:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Skill item hover */
+.skill-item {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.skill-item:hover {
+  transform: translateX(4px);
+  color: var(--gold);
+}
+
+/* Experience item hover */
+.exp-item {
+  transition: transform 0.2s ease;
+}
+
+.exp-item:hover {
+  transform: translateX(8px);
+}
+
+/* Fade in from left animation */
+.fade-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade in from right animation */
+.fade-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Staggered animation for project cards */
+.project-card:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.project-card:nth-child(even) {
+  animation-delay: 0.2s;
 }
 
 /* ============================================================
