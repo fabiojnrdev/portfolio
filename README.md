@@ -73,26 +73,6 @@ Edite apenas o `data/user.json`:
   ]
 }
 ```
+## Observação
 
-## Como rodar
-
-O `fetch()` não funciona abrindo o arquivo direto pelo navegador. Use um servidor local:
-
-**VS Code — Live Server:**
-Abra o projeto e clique em **Go Live**.
-
-**Node:**
-```sh
-npx http-server .
-```
-
-**Python:**
-```sh
-python -m http.server
-```
-
-Acesse `http://localhost:8000` (ou a porta exibida).
-
-## Licença
-
-Open-source. Use como quiser.
+Este projeto é uma vitrine pessoal para apresentar seu portfólio. Não se trata de um repositório open-source de uso genérico.
