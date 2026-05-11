@@ -1,0 +1,109 @@
+{
+  "name": "Fábio Júnior",
+  "firstName": "Fábio",
+  "lastName": "Júnior",
+  "label": "Desenvolvedor & Estudante",
+  "bio": "Estudante de Ciência da Computação no 3º Período. Desenvolvedor com foco em back-end e em construir interfaces limpas e sistemas bem arquitetados.",
+  "avatar": "./assets/img/avatar.png",
+  "contact": {
+    "tagline": "Aberto a oportunidades e colaborações",
+    "sub": "Seja um projeto freelance, estágio, ou só uma conversa sobre tecnologia — pode entrar em contato.",
+    "email": "fabiojnr.dev@gmail.com"
+  },
+  "stats": [
+    { "value": "3°",  "label": "Período"     },
+    { "value": "15+", "label": "Projetos"    },
+    { "value": "7+",  "label": "Tecnologias" }
+  ],
+  "social": {
+    "instagram": "https://instagram.com/fabiojnr.dev",
+    "github":   "https://github.com/fabiojnrdev",
+    "linkedin": "https://linkedin.com/in/fabiojnrdev"
+  },
+  "projects": [
+    {
+      "featured": false,
+      "title": "Audit System",
+      "description": "Sistema de auditoria empresarial com interceptação automática de eventos, dashboard em tempo real, exportação com integridade criptográfica e WebSocket para logs ao vivo.",
+      "tags": ["Python", "JavaScript"],
+      "url": "https://github.com/fabiojnrdev/audit-system"
+    },
+    {
+      "featured": false,
+      "title": "GenAI Food",
+      "description": "API simulada de um agente para restaurante, que envolve machine learning e aceleração de processos em demandas.",
+      "tags": ["Python",  "FastAPI"],
+      "url": "https://github.com/fabiojnrdev/genai_food"
+    },
+    {
+      "featured": false,
+      "title": "Geek API",
+      "description": "Api Fullstack simulada de um gerenciamento de produtos geek, com autenticação, CRUD e integração com frontend em React.",
+      "tags": ["FastAPI", "Python", "React", "TypeScript"],
+      "url": "https://github.com/fabiojnrdev/geek_api"
+    },
+    {
+      "featured": false,
+      "title": "Akairo CLI",
+      "description": "Uma ferramenta simples que funciona no terminal. Sua finalidade é: renomear arquivos em lote, converter imagens e organizar PDFs.",
+      "tags": ["Python"],
+      "url": "https://github.com/fabiojnrdev/akairocli"
+    },
+    {
+      "featured": false,
+      "title": "Task List",
+      "description": "Meu primeiro projeto usando 100% da stack Java",
+      "tags": ["Java"],
+      "url": "https://github.com/fabiojnrdev/todolist"
+    },
+    {
+      "featured": false,
+      "title": "Expense Manager - em desenvolvimento",
+      "description": "Gerenciador de despesas que o usuário insere despesas via terminal (ou arquivo CSV), o script agrupa por categoria, calcula totais e exporta um PDF com tabela formatada e gráfico de pizza.",
+      "tags": ["Python"],
+      "url": "https://github.com/fabiojnrdev/expense-manager"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Frontend",
+      "items": ["HTML5", "CSS3", "JavaScript", "Fetch API"]
+    },
+     {
+      "group": "Backend",
+      "items": ["APIs REST", "Django", "FastAPI"]
+    },
+    {
+      "group": "Ferramentas",
+      "items": ["Git & GitHub", "VS Code", "Claude", "Grok", "Docker"]
+    },
+    {
+      "group": "Fundamentos",
+      "items": ["Algoritmos", "Estrutura de Dados", "Lógica de Programação", "POO"]
+    },
+    {
+      "group": "Aprendendo",
+      "items": ["React", "Java", "SQL", "TypeScript", "Machine Learning"]
+    }
+  ],
+  "experience": [
+    {
+      "period": "2025 — Atual",
+      "title": "Ciência da Computação",
+      "org": "UniFAPI — 3º Período",
+      "description": "Cursando bacharelado em Ciência da Computação pela UniFAPI, com foco em fundamentos de computação, algoritmos, estruturas de dados e desenvolvimento de software."
+    },
+    {
+      "period": "2023 — 2024",
+      "title": "Técnico em Desenvolvimento de Sistemas",
+      "org": "Instituto Federal do Piauí — Concluído",
+      "description": "Curso técnico com ênfase em desenvolvimento de software, onde adquiri conhecimentos práticos em linguagens de programação, bancos de dados e metodologias ágeis."
+    },
+    {
+      "period": "2023",
+      "title": "Início no desenvolvimento web",
+      "org": "Autodidata",
+      "description": "Primeiros projetos pessoais com HTML, CSS e JavaScript. Construção de interfaces responsivas e aprendizado de boas práticas."
+    }
+  ]
+}
