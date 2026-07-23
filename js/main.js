@@ -2,7 +2,7 @@
    main.js — carrega e renderiza todos os dados do user.json
    ============================================================ */
 
-/* ── STARFIELD (identidade única: galáxia roxo/preto) ────── */
+/* ── STARFIELD (identidade única: galáxia roxo/preto, com imersão) ── */
 (function initStarfield() {
   const canvas = document.getElementById("stars");
   if (!canvas) return;
@@ -10,7 +10,12 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   let stars = [];
+  let bursts = []; // rastros estelares gerados por clique/toque
   let w, h;
+
+  // posição do ponteiro (suavizada) e alvo bruto
+  let mx = 0, my = 0, targetMx = 0, targetMy = 0;
+  let pointerActive = false;
 
   function resize() {
     w = canvas.width  = window.innerWidth;
@@ -23,34 +28,80 @@
       baseAlpha: Math.random() * 0.5 + 0.25,
       phase: Math.random() * Math.PI * 2,
       speed: Math.random() * 0.015 + 0.005,
+      depth: Math.random() * 0.8 + 0.2, // estrelas "mais próximas" reagem mais ao paralaxe
       hue: Math.random() > 0.82 ? "#D975E0" : "#EDE8F5"
     }));
   }
 
+  function drawStar(s, offX, offY, twinkle) {
+    ctx.globalAlpha = s.baseAlpha * twinkle;
+    ctx.fillStyle = s.hue;
+    ctx.beginPath();
+    ctx.arc(s.x + offX, s.y + offY, s.r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
   function drawStatic() {
     ctx.clearRect(0, 0, w, h);
-    stars.forEach(s => {
-      ctx.globalAlpha = s.baseAlpha;
-      ctx.fillStyle = s.hue;
+    stars.forEach(s => drawStar(s, 0, 0, 1));
+    ctx.globalAlpha = 1;
+  }
+
+  function drawBursts() {
+    bursts.forEach(b => {
+      ctx.globalAlpha = b.life;
+      ctx.strokeStyle = b.hue;
+      ctx.lineWidth = 1.4;
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.moveTo(b.x, b.y);
+      ctx.lineTo(b.x - b.vx * 6, b.y - b.vy * 6);
+      ctx.stroke();
+      b.x += b.vx;
+      b.y += b.vy;
+      b.life -= 0.02;
     });
+    bursts = bursts.filter(b => b.life > 0);
     ctx.globalAlpha = 1;
   }
 
   function tick(t) {
+    // suaviza o movimento do paralaxe (lerp) para sensação de imersão, não de rigidez
+    mx += (targetMx - mx) * 0.06;
+    my += (targetMy - my) * 0.06;
+
     ctx.clearRect(0, 0, w, h);
     stars.forEach(s => {
       const twinkle = Math.sin(t * s.speed + s.phase) * 0.35 + 0.65;
-      ctx.globalAlpha = s.baseAlpha * twinkle;
-      ctx.fillStyle = s.hue;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
+      const offX = mx * s.depth * 22;
+      const offY = my * s.depth * 22;
+      drawStar(s, offX, offY, twinkle);
     });
+    drawBursts();
     ctx.globalAlpha = 1;
     requestAnimationFrame(tick);
+  }
+
+  function setTargetFromClient(clientX, clientY) {
+    targetMx = (clientX / w) * 2 - 1;   // -1..1
+    targetMy = (clientY / h) * 2 - 1;
+    document.documentElement.style.setProperty("--mx", `${(clientX / w) * 100}%`);
+    document.documentElement.style.setProperty("--my", `${(clientY / h) * 100}%`);
+  }
+
+  function spawnBurst(clientX, clientY) {
+    const n = 5;
+    for (let i = 0; i < n; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 1.5 + 0.8;
+      bursts.push({
+        x: clientX,
+        y: clientY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        hue: Math.random() > 0.6 ? "#D975E0" : "#9B6DFF"
+      });
+    }
   }
 
   resize();
@@ -58,7 +109,20 @@
 
   if (reduceMotion) {
     drawStatic();
+    // mesmo com movimento reduzido, mantém o glow de nebulosa acompanhando o cursor
+    // (é uma pista visual estática por evento, não uma animação contínua)
+    window.addEventListener("pointermove", e => setTargetFromClient(e.clientX, e.clientY));
   } else {
+    window.addEventListener("pointermove", e => {
+      pointerActive = true;
+      setTargetFromClient(e.clientX, e.clientY);
+    });
+    window.addEventListener("pointerleave", () => {
+      pointerActive = false;
+      targetMx = 0;
+      targetMy = 0;
+    });
+    window.addEventListener("pointerdown", e => spawnBurst(e.clientX, e.clientY));
     requestAnimationFrame(tick);
   }
 })();
@@ -107,6 +171,7 @@ async function loadPortfolio() {
     renderHero(user);
     renderProjects(user.projects);
     renderSkills(user.skills);
+    renderSoftSkills(user.softSkills);
     renderExperience(user.experience);
     renderContact(user);
     renderFooter(user);
@@ -259,6 +324,24 @@ function renderSkills(skills) {
         </div>`).join("")}
     </div>`
   ).join("");
+}
+
+/* ── SOFT SKILLS (preenchimento manual) ──────────────────── */
+function renderSoftSkills(softSkills) {
+  const grid = document.getElementById("soft-skills-grid");
+  if (!grid) return;
+
+  if (!Array.isArray(softSkills) || !softSkills.length) {
+    grid.innerHTML = `
+      <div class="soft-skill-empty fade-up">
+        Adicione suas soft skills em <code>softSkills</code> no arquivo data/user.json.
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = softSkills.map((skill, i) => `
+    <div class="soft-skill-chip fade-up" style="animation-delay:${i * 0.08}s">${skill}</div>
+  `).join("");
 }
 
 /* ── EXPERIENCE ──────────────────────────────────────────── */

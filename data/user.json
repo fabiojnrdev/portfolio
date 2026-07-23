@@ -3,7 +3,7 @@
   "firstName": "Fábio",
   "lastName": "Júnior",
   "label": "Desenvolvedor & Estudante",
-  "bio": "Estudante de Ciência da Computação, atualmente no 4º Período. Desenvolvedor com foco em back-end e na construção de interfaces limpas e sistemas bem arquitetados.",
+  "bio": "Estudante de Ciência da Computação no 3º Período. Desenvolvedor com foco em back-end e em construir interfaces limpas e sistemas bem arquitetados.",
   "avatar": "./assets/img/avatar.png",
   "contact": {
     "tagline": "Aberto a oportunidades e colaborações",
@@ -11,7 +11,7 @@
     "email": "fabiojnr.dev@gmail.com"
   },
   "stats": [
-    { "value": "4°",  "label": "Período"       },
+    { "value": "3°",  "label": "Período"       },
     { "value": "04",  "label": "Em Destaque"   },
     { "value": "22",  "label": "Repositórios"  }
   ],
@@ -61,7 +61,7 @@
     },
     {
       "group": "Banco de Dados",
-      "items": ["SQL", "PostgreSQL", "MongoDB", "MySQL"]
+      "items": ["SQL"]
     },
     {
       "group": "Ferramentas",
@@ -73,14 +73,15 @@
     },
     {
       "group": "Em progresso",
-      "items": ["Java", "Machine Learning"]
+      "items": ["Java", "Machine Learning", "Python", "Spring Boot"]
     }
   ],
+  "softSkills": [],
   "experience": [
     {
       "period": "2025 — Atual",
       "title": "Ciência da Computação",
-      "org": "UniFAPI — 4º Período",
+      "org": "UniFAPI — 3º Período",
       "description": "Cursando bacharelado em Ciência da Computação pela UniFAPI, com foco em fundamentos de computação, algoritmos, estruturas de dados e desenvolvimento de software."
     },
     {
@@ -91,7 +92,7 @@
     },
     {
       "period": "2023",
-      "title": "Início no desenvolvimento",
+      "title": "Início no desenvolvimento web",
       "org": "Autodidata",
       "description": "Primeiros projetos pessoais com HTML, CSS e JavaScript. Construção de interfaces responsivas e aprendizado de boas práticas."
     }
