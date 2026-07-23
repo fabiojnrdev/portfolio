@@ -2,44 +2,65 @@
    main.js — carrega e renderiza todos os dados do user.json
    ============================================================ */
 
-/* ── THEME (único lugar — theme.js removido) ─────────────── */
-(function () {
-  const root = document.documentElement;
-  const btn  = document.getElementById("theme-toggle");
-  const icon = document.getElementById("theme-icon");
+/* ── STARFIELD (identidade única: galáxia roxo/preto) ────── */
+(function initStarfield() {
+  const canvas = document.getElementById("stars");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function applyTheme(t) {
-    root.classList.toggle("dark-theme", t === "dark");
-    if (icon) icon.textContent = t === "dark" ? "🌙" : "🌞";
+  let stars = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width  = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    const density = Math.min(160, Math.floor((w * h) / 9000));
+    stars = Array.from({ length: density }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.1 + 0.3,
+      baseAlpha: Math.random() * 0.5 + 0.25,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.015 + 0.005,
+      hue: Math.random() > 0.82 ? "#D975E0" : "#EDE8F5"
+    }));
   }
 
-  function savedTheme() {
-    try { return localStorage.getItem("theme"); } catch { return null; }
+  function drawStatic() {
+    ctx.clearRect(0, 0, w, h);
+    stars.forEach(s => {
+      ctx.globalAlpha = s.baseAlpha;
+      ctx.fillStyle = s.hue;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
   }
 
-  function saveTheme(t) {
-    try { localStorage.setItem("theme", t); } catch {}
+  function tick(t) {
+    ctx.clearRect(0, 0, w, h);
+    stars.forEach(s => {
+      const twinkle = Math.sin(t * s.speed + s.phase) * 0.35 + 0.65;
+      ctx.globalAlpha = s.baseAlpha * twinkle;
+      ctx.fillStyle = s.hue;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(tick);
   }
 
-  function systemTheme() {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  resize();
+  window.addEventListener("resize", resize);
+
+  if (reduceMotion) {
+    drawStatic();
+  } else {
+    requestAnimationFrame(tick);
   }
-
-  applyTheme(savedTheme() || systemTheme());
-
-  btn?.addEventListener("click", () => {
-    const next = root.classList.contains("dark-theme") ? "light" : "dark";
-    applyTheme(next);
-    saveTheme(next);
-    if (icon) {
-      icon.style.transform = "scale(0.8)";
-      requestAnimationFrame(() => { icon.style.transform = "scale(1)"; });
-    }
-  });
-
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (!savedTheme()) applyTheme(e.matches ? "dark" : "light");
-  });
 })();
 
 /* ── MOBILE MENU ─────────────────────────────────────────── */
@@ -185,7 +206,7 @@ function renderHero(user) {
   }
 }
 
-/* ── PROJECTS ────────────────────────────────────────────── */
+/* ── PROJECTS (4 destaques, peso visual igual) ──────────── */
 function renderProjects(projects) {
   if (!Array.isArray(projects) || !projects.length) return;
 
@@ -193,25 +214,30 @@ function renderProjects(projects) {
   const countEl = document.getElementById("projects-count");
   if (!grid) return;
 
-  if (countEl) countEl.textContent = `${String(projects.length).padStart(2, "0")} trabalhos`;
+  if (countEl) countEl.textContent = `${String(projects.length).padStart(2, "0")} selecionados`;
 
   grid.innerHTML = projects.map((p, i) => {
-    const num      = String(i + 1).padStart(2, "0");
-    const featured = p.featured ? "featured" : "";
-    const tags     = (p.tags || []).map(t => `<span class="proj-tag">${t}</span>`).join("");
-    const href     = p.url && p.url !== "#"
+    const num  = String(i + 1).padStart(2, "0");
+    const tags = (p.tags || []).map(t => `<span class="proj-tag">${t}</span>`).join("");
+    const href = p.url && p.url !== "#"
       ? `href="${p.url}" target="_blank" rel="noopener noreferrer"`
       : `href="#" tabindex="-1"`;
+    const demo = p.demo
+      ? `<a class="proj-demo" href="${p.demo}" target="_blank" rel="noopener noreferrer">Demo</a>`
+      : "";
 
     return `
-      <div class="project-card ${featured} fade-up" style="animation-delay:${i * 0.1}s">
-        <div class="proj-num">${num}</div>
+      <div class="project-card fade-up" style="animation-delay:${i * 0.1}s">
+        <div class="proj-num">PROJ_${num}</div>
         <div>
           <div class="proj-title">${p.title}</div>
           <div class="proj-desc">${p.description}</div>
           <div class="proj-footer">
             <div class="proj-tags">${tags}</div>
-            <a class="proj-arrow" ${href} aria-label="Ver projeto ${p.title}">↗</a>
+            <div class="proj-links">
+              ${demo}
+              <a class="proj-arrow" ${href} aria-label="Ver projeto ${p.title}">↗</a>
+            </div>
           </div>
         </div>
       </div>`;

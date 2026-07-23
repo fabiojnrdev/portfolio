@@ -3,7 +3,7 @@
   "firstName": "Fábio",
   "lastName": "Júnior",
   "label": "Desenvolvedor & Estudante",
-  "bio": "Estudante de Ciência da Computação no 3º Período. Desenvolvedor com foco em back-end e em construir interfaces limpas e sistemas bem arquitetados.",
+  "bio": "Estudante de Ciência da Computação, atualmente no 4º Período. Desenvolvedor com foco em back-end e na construção de interfaces limpas e sistemas bem arquitetados.",
   "avatar": "./assets/img/avatar.png",
   "contact": {
     "tagline": "Aberto a oportunidades e colaborações",
@@ -11,9 +11,9 @@
     "email": "fabiojnr.dev@gmail.com"
   },
   "stats": [
-    { "value": "3°",  "label": "Período"     },
-    { "value": "15+", "label": "Projetos"    },
-    { "value": "7+",  "label": "Tecnologias" }
+    { "value": "4°",  "label": "Período"       },
+    { "value": "04",  "label": "Em Destaque"   },
+    { "value": "22",  "label": "Repositórios"  }
   ],
   "social": {
     "instagram": "https://instagram.com/fabiojnr.dev",
@@ -22,75 +22,65 @@
   },
   "projects": [
     {
-      "featured": false,
-      "title": "Audit System",
-      "description": "Sistema de auditoria empresarial com interceptação automática de eventos, dashboard em tempo real, exportação com integridade criptográfica e WebSocket para logs ao vivo.",
-      "tags": ["Python", "JavaScript"],
-      "url": "https://github.com/fabiojnrdev/audit-system"
+      "title": "[ Projeto 01 — a definir ]",
+      "description": "Adicione aqui a descrição real deste projeto.",
+      "tags": [],
+      "url": "https://github.com/fabiojnrdev",
+      "demo": ""
     },
     {
-      "featured": false,
-      "title": "GenAI Food",
-      "description": "API simulada de um agente para restaurante, que envolve machine learning e aceleração de processos em demandas.",
-      "tags": ["Python",  "FastAPI"],
-      "url": "https://github.com/fabiojnrdev/genai_food"
+      "title": "[ Projeto 02 — a definir ]",
+      "description": "Adicione aqui a descrição real deste projeto.",
+      "tags": [],
+      "url": "https://github.com/fabiojnrdev",
+      "demo": ""
     },
     {
-      "featured": false,
-      "title": "Geek API",
-      "description": "Api Fullstack simulada de um gerenciamento de produtos geek, com autenticação, CRUD e integração com frontend em React.",
-      "tags": ["FastAPI", "Python", "React", "TypeScript"],
-      "url": "https://github.com/fabiojnrdev/geek_api"
+      "title": "[ Projeto 03 — a definir ]",
+      "description": "Adicione aqui a descrição real deste projeto.",
+      "tags": [],
+      "url": "https://github.com/fabiojnrdev",
+      "demo": ""
     },
     {
-      "featured": false,
-      "title": "Akairo CLI",
-      "description": "Uma ferramenta simples que funciona no terminal. Sua finalidade é: renomear arquivos em lote, converter imagens e organizar PDFs.",
-      "tags": ["Python"],
-      "url": "https://github.com/fabiojnrdev/akairocli"
-    },
-    {
-      "featured": false,
-      "title": "Task List",
-      "description": "Meu primeiro projeto usando 100% da stack Java",
-      "tags": ["Java"],
-      "url": "https://github.com/fabiojnrdev/todolist"
-    },
-    {
-      "featured": false,
-      "title": "Expense Manager - em desenvolvimento",
-      "description": "Gerenciador de despesas que o usuário insere despesas via terminal (ou arquivo CSV), o script agrupa por categoria, calcula totais e exporta um PDF com tabela formatada e gráfico de pizza.",
-      "tags": ["Python"],
-      "url": "https://github.com/fabiojnrdev/expense-manager"
+      "title": "[ Projeto 04 — a definir ]",
+      "description": "Adicione aqui a descrição real deste projeto.",
+      "tags": [],
+      "url": "https://github.com/fabiojnrdev",
+      "demo": ""
     }
   ],
   "skills": [
     {
       "group": "Frontend",
-      "items": ["HTML5", "CSS3", "JavaScript", "Fetch API"]
+      "items": ["HTML5", "CSS3", "JavaScript", "Fetch API", "React", "TypeScript"]
     },
-     {
+    {
       "group": "Backend",
       "items": ["APIs REST", "Django", "FastAPI"]
     },
     {
+      "group": "Banco de Dados",
+      "items": ["SQL", "PostgreSQL", "MongoDB", "MySQL"]
+    },
+    {
       "group": "Ferramentas",
-      "items": ["Git & GitHub", "VS Code", "Claude", "Grok", "Docker"]
+      "items": ["Git & GitHub", "VS Code", "Docker"]
     },
     {
       "group": "Fundamentos",
       "items": ["Algoritmos", "Estrutura de Dados", "Lógica de Programação", "POO"]
     },
     {
-      "group": "Aprendendo",
-      "items": ["React", "Java", "SQL", "TypeScript", "Machine Learning"]
+      "group": "Em progresso",
+      "items": ["Java", "Machine Learning"]
     }
   ],
   "experience": [
     {
       "period": "2025 — Atual",
       "title": "Ciência da Computação",
-      "org": "UniFAPI — 3º Período",
+      "org": "UniFAPI — 4º Período",
       "description": "Cursando bacharelado em Ciência da Computação pela UniFAPI, com foco em fundamentos de computação, algoritmos, estruturas de dados e desenvolvimento de software."
     },
     {
@@ -101,7 +91,7 @@
     },
     {
       "period": "2023",
-      "title": "Início no desenvolvimento web",
+      "title": "Início no desenvolvimento",
       "org": "Autodidata",
       "description": "Primeiros projetos pessoais com HTML, CSS e JavaScript. Construção de interfaces responsivas e aprendizado de boas práticas."
     }
