@@ -35,6 +35,9 @@
 }
 
 :root {
+  --mx: 50%;
+  --my: 50%;
+
   /* ── Galaxy palette ─────────────────────────────────────── */
   --bg:          #07050D;
   --bg-2:        #0D0817;
@@ -92,9 +95,11 @@ body {
   z-index: -1;
   pointer-events: none;
   background:
+    radial-gradient(480px 380px at var(--mx) var(--my), rgba(155, 109, 255, 0.09), transparent 70%),
     radial-gradient(ellipse 900px 650px at 12% 18%, rgba(155, 109, 255, 0.14), transparent 60%),
     radial-gradient(ellipse 800px 600px at 88% 74%, rgba(217, 117, 224, 0.11), transparent 62%),
     radial-gradient(ellipse 600px 500px at 50% 100%, rgba(107, 75, 184, 0.10), transparent 65%);
+  transition: background-position 0.4s ease;
   animation: nebula-drift 44s ease-in-out infinite alternate;
 }
 
@@ -702,6 +707,49 @@ section {
 }
 
 /* ============================================================
+   SOFT SKILLS
+   ============================================================ */
+#soft-skills {
+  background: var(--bg);
+  border-bottom: 0.5px solid var(--border);
+}
+
+.soft-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.soft-skill-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  border: 0.5px solid var(--border-mid);
+  padding: 10px 18px;
+  transition: border-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.soft-skill-chip:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+  box-shadow: 0 0 14px rgba(155, 109, 255, 0.18);
+}
+
+.soft-skill-empty {
+  font-size: 13px;
+  color: var(--ink-muted);
+  border: 0.5px dashed var(--border-mid);
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+}
+
+.soft-skill-empty code {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--violet);
+}
+
+/* ============================================================
    EXPERIENCE
    ============================================================ */
 #experiencias {
@@ -796,23 +844,30 @@ section {
 
 .contact-links {
   display: flex;
-  flex-direction: column;
-  gap: 1px;
-  background: var(--border);
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 0.5px solid var(--border-mid);
   width: 100%;
 }
 
 .contact-link {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.25rem 1.5rem;
-  background: var(--bg-3);
+  flex-direction: row;
+  gap: 0.6rem;
+  padding: 1.1rem 1.75rem;
+  background: transparent;
   text-decoration: none;
   transition: background var(--transition);
   text-align: center;
+  border-right: 0.5px solid var(--border-mid);
+  flex: 1 1 auto;
+}
+
+.contact-link:last-child {
+  border-right: none;
 }
 
 .contact-link:hover {
@@ -832,14 +887,25 @@ section {
 }
 
 .contact-link-value {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--ink);
   transition: color var(--transition);
 }
 
 .contact-link-arrow {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--violet-dim);
+}
+
+@media (max-width: 600px) {
+  .contact-links { flex-direction: column; }
+  .contact-link {
+    flex-direction: row;
+    justify-content: space-between;
+    border-right: none;
+    border-bottom: 0.5px solid var(--border-mid);
+  }
+  .contact-link:last-child { border-bottom: none; }
 }
 
 /* ============================================================
@@ -925,9 +991,9 @@ footer {
   transform: translateX(0);
 }
 
-/*
-   RESPONSIVIDADE — TABLETS (600–900px)
-*/
+/* ============================================================
+   RESPONSIVE — TABLETS (600–900px)
+   ============================================================ */
 @media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
@@ -974,7 +1040,7 @@ footer {
 }
 
 /* ============================================================
-   RESPONSIVIDADE — MOBILE
+   RESPONSIVE — MOBILE (<480px)
    ============================================================ */
 @media (max-width: 480px) {
   h1 { font-size: 42px; }
