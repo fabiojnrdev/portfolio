@@ -318,12 +318,29 @@ function renderSkills(skills) {
   grid.innerHTML = skills.map((group, gi) =>
     `<div class="skill-group fade-up" style="animation-delay:${gi * 0.2}s">
       <div class="skill-group-title">${group.group}</div>
-      ${(group.items || []).map((item, ii) => `
-        <div class="skill-item fade-up" style="animation-delay:${gi * 0.2 + ii * 0.1}s">
-          <span class="skill-dot"></span>${item}
-        </div>`).join("")}
+      ${(group.items || []).map((item, ii) => {
+        const name  = typeof item === "string" ? item : item.name;
+        const level = typeof item === "string" ? null : item.level;
+        const bar   = level != null ? `
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-level="${level}" style="width:0%"></div>
+          </div>
+          <span class="skill-level">${level}%</span>` : "";
+        return `
+          <div class="skill-item fade-up" style="animation-delay:${gi * 0.2 + ii * 0.1}s">
+            <span class="skill-dot"></span>
+            <span class="skill-name">${name}</span>
+            ${bar}
+          </div>`;
+      }).join("")}
     </div>`
   ).join("");
+
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".skill-bar-fill").forEach(el => {
+      el.style.width = `${el.dataset.level}%`;
+    });
+  });
 }
 
 /* ── SOFT SKILLS (preenchimento manual) ──────────────────── */

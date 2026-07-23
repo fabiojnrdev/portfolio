@@ -53,27 +53,54 @@
   "skills": [
     {
       "group": "Frontend",
-      "items": ["HTML5", "CSS3", "JavaScript", "Fetch API", "React", "TypeScript"]
+      "items": [
+        { "name": "HTML5", "level": 50 },
+        { "name": "CSS3", "level": 50 },
+        { "name": "JavaScript", "level": 50 },
+        { "name": "Fetch API", "level": 50 },
+        { "name": "React", "level": 50 },
+        { "name": "TypeScript", "level": 50 }
+      ]
     },
     {
       "group": "Backend",
-      "items": ["APIs REST", "Django", "FastAPI"]
+      "items": [
+        { "name": "APIs REST", "level": 50 },
+        { "name": "Django", "level": 50 },
+        { "name": "FastAPI", "level": 50 },
+        { "name": "Python", "level": 50 }
+      ]
     },
     {
       "group": "Banco de Dados",
-      "items": ["SQL"]
+      "items": [
+        { "name": "SQL", "level": 50 }
+      ]
     },
     {
       "group": "Ferramentas",
-      "items": ["Git & GitHub", "VS Code", "Docker"]
+      "items": [
+        { "name": "Git & GitHub", "level": 50 },
+        { "name": "VS Code", "level": 50 },
+        { "name": "Docker", "level": 50 }
+      ]
     },
     {
       "group": "Fundamentos",
-      "items": ["Algoritmos", "Estrutura de Dados", "Lógica de Programação", "POO"]
+      "items": [
+        { "name": "Algoritmos", "level": 50 },
+        { "name": "Estrutura de Dados", "level": 50 },
+        { "name": "Lógica de Programação", "level": 50 },
+        { "name": "POO", "level": 50 }
+      ]
     },
     {
       "group": "Em progresso",
-      "items": ["Java", "Machine Learning", "Python", "Spring Boot"]
+      "items": [
+        { "name": "Java", "level": 50 },
+        { "name": "Machine Learning", "level": 50 },
+        { "name": "Spring Boot", "level": 50 }
+      ]
     }
   ],
   "softSkills": [],
