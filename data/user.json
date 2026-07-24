@@ -185,24 +185,29 @@
   ],
   "softSkills": [
     {
-      "name": "Comunicação",
-      "level": 90
-    },
-    {
-      "name": "Trabalho em Equipe",
-      "level": 85
-    },
-    {
-      "name": "Resolução de Problemas",
-      "level": 80
-    },
-    {
-      "name": "Adaptabilidade",
-      "level": 75
-    },
-    {
-      "name": "Gestão de Tempo",
-      "level": 70
+      "group": "Soft Skills",
+      "items": [
+        {
+          "name": "Comunicação",
+          "level": 90
+        },
+        {
+          "name": "Trabalho em Equipe",
+          "level": 85
+        },
+        {
+          "name": "Resolução de Problemas",
+          "level": 80
+        },
+        {
+          "name": "Adaptabilidade",
+          "level": 95
+        },
+        {
+          "name": "Gestão de Tempo",
+          "level": 90
+        }
+      ]
     }
   ],
   "idiomas": [
