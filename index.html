@@ -14,7 +14,7 @@
 
 <body>
 
-  <!-- STARFIELD (identidade única: galáxia roxo/preto) -->
+  <!-- STARFIELD (identidade única: galáxia interativa, cor cíclica) -->
   <canvas id="stars" aria-hidden="true"></canvas>
   <div class="nebula-glow" aria-hidden="true"></div>
 
@@ -56,13 +56,9 @@
         <button class="btn-ghost"   onclick="document.getElementById('contato').scrollIntoView({behavior:'smooth'})">Entrar em contato</button>
       </div>
     </div>
+    <!-- a galáxia substitui a foto: identidade visual é o núcleo interativo, não um retrato -->
     <div class="hero-visual fade-right">
-      <div class="avatar-wrap">
-        <div class="avatar-frame">
-          <img id="avatar" alt="Foto de perfil">
-          <div class="avatar-placeholder" id="avatar-placeholder">FJ</div>
-        </div>
-      </div>
+      <canvas id="galaxy-core" aria-hidden="true"></canvas>
       <div class="hero-stats" id="hero-stats"></div>
     </div>
   </section>

@@ -2,7 +2,32 @@
    main.js — carrega e renderiza todos os dados do user.json
    ============================================================ */
 
-/* ── STARFIELD (identidade única: galáxia roxo/preto, com imersão) ── */
+/* ── ESTADO GLOBAL DE COR (paleta cíclica, sem violeta/magenta fixos) ──
+   --hue gira lentamente e é a única fonte de cor de destaque do site.
+   Starfield e galaxy-core leem essa mesma variável para não duplicar
+   estado de cor em dois lugares. */
+const ColorCycle = (() => {
+  let hue = 262;
+  const root = document.documentElement;
+  const CYCLE_MS = 140000; // uma volta completa a cada ~140s — "lento"
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function tick(t) {
+    hue = (262 + (t / CYCLE_MS) * 360) % 360;
+    root.style.setProperty("--hue", hue.toFixed(2));
+    requestAnimationFrame(tick);
+  }
+
+  if (!reduceMotion) {
+    requestAnimationFrame(tick);
+  } else {
+    root.style.setProperty("--hue", hue);
+  }
+
+  return { getHue: () => hue };
+})();
+
+/* ── STARFIELD (fundo do site inteiro, interativo) ── */
 (function initStarfield() {
   const canvas = document.getElementById("stars");
   if (!canvas) return;
@@ -15,7 +40,6 @@
 
   // posição do ponteiro (suavizada) e alvo bruto
   let mx = 0, my = 0, targetMx = 0, targetMy = 0;
-  let pointerActive = false;
 
   function resize() {
     w = canvas.width  = window.innerWidth;
@@ -29,28 +53,29 @@
       phase: Math.random() * Math.PI * 2,
       speed: Math.random() * 0.015 + 0.005,
       depth: Math.random() * 0.8 + 0.2, // estrelas "mais próximas" reagem mais ao paralaxe
-      hue: Math.random() > 0.82 ? "#D975E0" : "#EDE8F5"
+      accent: Math.random() > 0.82 // 18% das estrelas usam a cor de destaque cíclica
     }));
   }
 
-  function drawStar(s, offX, offY, twinkle) {
+  function drawStar(s, offX, offY, twinkle, hue) {
     ctx.globalAlpha = s.baseAlpha * twinkle;
-    ctx.fillStyle = s.hue;
+    ctx.fillStyle = s.accent ? `hsl(${hue}, 78%, 74%)` : `hsl(${hue}, 14%, 92%)`;
     ctx.beginPath();
     ctx.arc(s.x + offX, s.y + offY, s.r, 0, Math.PI * 2);
     ctx.fill();
   }
 
   function drawStatic() {
+    const hue = ColorCycle.getHue();
     ctx.clearRect(0, 0, w, h);
-    stars.forEach(s => drawStar(s, 0, 0, 1));
+    stars.forEach(s => drawStar(s, 0, 0, 1, hue));
     ctx.globalAlpha = 1;
   }
 
-  function drawBursts() {
+  function drawBursts(hue) {
     bursts.forEach(b => {
       ctx.globalAlpha = b.life;
-      ctx.strokeStyle = b.hue;
+      ctx.strokeStyle = `hsl(${b.accent ? hue : hue + 40}, 80%, 72%)`;
       ctx.lineWidth = 1.4;
       ctx.beginPath();
       ctx.moveTo(b.x, b.y);
@@ -69,14 +94,16 @@
     mx += (targetMx - mx) * 0.06;
     my += (targetMy - my) * 0.06;
 
+    const hue = ColorCycle.getHue();
+
     ctx.clearRect(0, 0, w, h);
     stars.forEach(s => {
       const twinkle = Math.sin(t * s.speed + s.phase) * 0.35 + 0.65;
       const offX = mx * s.depth * 22;
       const offY = my * s.depth * 22;
-      drawStar(s, offX, offY, twinkle);
+      drawStar(s, offX, offY, twinkle, hue);
     });
-    drawBursts();
+    drawBursts(hue);
     ctx.globalAlpha = 1;
     requestAnimationFrame(tick);
   }
@@ -99,7 +126,7 @@
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1,
-        hue: Math.random() > 0.6 ? "#D975E0" : "#9B6DFF"
+        accent: Math.random() > 0.6
       });
     }
   }
@@ -114,16 +141,146 @@
     window.addEventListener("pointermove", e => setTargetFromClient(e.clientX, e.clientY));
   } else {
     window.addEventListener("pointermove", e => {
-      pointerActive = true;
       setTargetFromClient(e.clientX, e.clientY);
     });
     window.addEventListener("pointerleave", () => {
-      pointerActive = false;
       targetMx = 0;
       targetMy = 0;
     });
     window.addEventListener("pointerdown", e => spawnBurst(e.clientX, e.clientY));
     requestAnimationFrame(tick);
+  }
+})();
+
+/* ── GALAXY CORE (hero) ──────────────────────────────────────
+   Substitui a foto de perfil. É um disco galáctico girando, com
+   partículas que se afastam do cursor e reagem a cliques (ripple).
+   A identidade visual do dono do site é a galáxia, não um retrato. */
+(function initGalaxyCore() {
+  const canvas = document.getElementById("galaxy-core");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let w, h, cx, cy;
+  let particles = [];
+  let ripples = [];
+  const pointer = { x: -9999, y: -9999, active: false };
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    w = canvas.width  = Math.max(1, rect.width);
+    h = canvas.height = Math.max(1, rect.height);
+    cx = w / 2;
+    cy = h / 2;
+
+    const coreR = Math.min(w, h) * 0.44;
+    const count = Math.min(260, Math.floor((w * h) / 1500));
+
+    particles = Array.from({ length: count }, () => {
+      const r = Math.pow(Math.random(), 0.6) * coreR + 8;
+      return {
+        baseR: r,
+        angle: Math.random() * Math.PI * 2,
+        speed: 0.0022 + (coreR - r) / coreR * 0.0035, // núcleo gira mais rápido que a borda
+        size: Math.random() * 1.5 + 0.4,
+        alpha: Math.random() * 0.5 + 0.4,
+        offset: 0,
+        accent: Math.random() > 0.55
+      };
+    });
+  }
+
+  function particlePos(p) {
+    const r = p.baseR + p.offset;
+    return {
+      x: cx + Math.cos(p.angle) * r,
+      y: cy + Math.sin(p.angle) * r * 0.55 // disco achatado em elipse
+    };
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    const hue = ColorCycle.getHue();
+
+    // núcleo brilhante
+    const coreRadius = Math.min(w, h) * 0.13;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreRadius);
+    grad.addColorStop(0, `hsla(${hue}, 90%, 78%, 0.55)`);
+    grad.addColorStop(1, `hsla(${hue}, 90%, 78%, 0)`);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, coreRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    particles.forEach(p => {
+      p.angle += p.speed;
+      p.offset += (0 - p.offset) * 0.05; // relaxa de volta à órbita original
+
+      if (pointer.active) {
+        const pos = particlePos(p);
+        const dx = pos.x - pointer.x;
+        const dy = pos.y - pointer.y;
+        const dist = Math.hypot(dx, dy);
+        const influence = 100;
+        if (dist < influence) {
+          p.offset += (1 - dist / influence) * 1.6;
+        }
+      }
+
+      const pos = particlePos(p);
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.accent ? `hsl(${hue}, 82%, 74%)` : `hsl(${hue + 55}, 70%, 72%)`;
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    ripples.forEach(rp => {
+      ctx.globalAlpha = rp.life;
+      ctx.strokeStyle = `hsl(${hue}, 85%, 75%)`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(rp.x, rp.y, rp.radius, 0, Math.PI * 2);
+      ctx.stroke();
+      rp.radius += 2.6;
+      rp.life -= 0.018;
+    });
+    ripples = ripples.filter(r => r.life > 0);
+
+    ctx.globalAlpha = 1;
+  }
+
+  function loop() {
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  function setPointerFromEvent(e) {
+    const rect = canvas.getBoundingClientRect();
+    pointer.x = e.clientX - rect.left;
+    pointer.y = e.clientY - rect.top;
+    pointer.active = true;
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+  canvas.addEventListener("pointermove", setPointerFromEvent);
+  canvas.addEventListener("pointerleave", () => { pointer.active = false; });
+  canvas.addEventListener("pointerdown", e => {
+    setPointerFromEvent(e);
+    ripples.push({ x: pointer.x, y: pointer.y, radius: 4, life: 1 });
+    particles.forEach(p => {
+      const pos = particlePos(p);
+      const dist = Math.hypot(pos.x - pointer.x, pos.y - pointer.y);
+      if (dist < 150) p.offset += (150 - dist) * 0.35;
+    });
+  });
+
+  if (reduceMotion) {
+    draw();
+  } else {
+    requestAnimationFrame(loop);
   }
 })();
 
@@ -179,6 +336,7 @@ async function loadPortfolio() {
     requestAnimationFrame(() => {
       initScrollAnimations();
       animateStats();
+      initContactScrollPeek();
     });
 
   } catch (err) {
@@ -202,7 +360,7 @@ function renderNav(user) {
   document.getElementById("page-title").textContent = `${user.name || "Portfólio"} — Dev`;
 }
 
-/* ── HERO ────────────────────────────────────────────────── */
+/* ── HERO (sem foto: o retrato é a galáxia interativa) ──── */
 function renderHero(user) {
   const labelEl = document.getElementById("hero-label");
   if (labelEl && user.label) labelEl.textContent = user.label;
@@ -215,47 +373,6 @@ function renderHero(user) {
 
   const bioEl = document.getElementById("hero-bio");
   if (bioEl) bioEl.textContent = user.bio || "";
-
-  /* Avatar */
-  const img         = document.getElementById("avatar");
-  const placeholder = document.getElementById("avatar-placeholder");
-
-  if (img && placeholder) {
-    img.alt = `Foto de perfil de ${user.name || "perfil"}`;
-    img.classList.remove("fade-in");
-    placeholder.style.display = "flex";
-
-    const fallback = "./assets/img/avatar.png";
-    const primary  = user.avatar || fallback;
-    let triedFallback = false;
-
-    const showAvatar = () => {
-      placeholder.style.display = "none";
-      requestAnimationFrame(() => img.classList.add("fade-in"));
-    };
-
-    const hideAvatar = () => {
-      if (!triedFallback && primary !== fallback) {
-        triedFallback = true;
-        img.src = fallback;
-        return;
-      }
-      placeholder.style.display = "flex";
-      img.classList.remove("fade-in");
-      placeholder.textContent = (user.name || "")
-        .split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase() || "?";
-    };
-
-    img.onload  = showAvatar;
-    img.onerror = hideAvatar;
-    img.src = primary;
-
-    requestAnimationFrame(() => {
-      if (img.complete) {
-        img.naturalWidth > 0 ? showAvatar() : hideAvatar();
-      }
-    });
-  }
 
   /* Stats */
   if (Array.isArray(user.stats)) {
@@ -343,7 +460,7 @@ function renderSkills(skills) {
   });
 }
 
-/* ── SOFT SKILLS (preenchimento manual) ──────────────────── */
+/* ── SOFT SKILLS (chips simples — espera array de strings) ── */
 function renderSoftSkills(softSkills) {
   const grid = document.getElementById("soft-skills-grid");
   if (!grid) return;
@@ -420,6 +537,30 @@ function renderContact(user) {
         <span class="contact-link-arrow">↗</span>
       </a>`;
   }).join("");
+}
+
+/* ── CONTACT SCROLLBAR POP-IN ─────────────────────────────
+   Assim que a seção #contato entra em vista, a barra de rolagem do
+   menu linear de contato aparece por ~1.6s e some de novo. Só faz
+   sentido em telas onde o conteúdo realmente estoura a largura. */
+function initContactScrollPeek() {
+  const links = document.getElementById("contact-links");
+  if (!links) return;
+
+  let played = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !played && links.scrollWidth > links.clientWidth) {
+        played = true;
+        links.classList.add("scrollbar-peek");
+        setTimeout(() => links.classList.remove("scrollbar-peek"), 1600);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  observer.observe(links);
 }
 
 /* ── FOOTER ──────────────────────────────────────────────── */
