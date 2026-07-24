@@ -153,7 +153,7 @@
         },
         {
           "name": "Estrutura de Dados",
-          "level": 32
+          "level": 52
         },
         {
           "name": "Lógica de Programação",
@@ -183,7 +183,38 @@
       ]
     }
   ],
-  "softSkills": [],
+  "softSkills": [
+    {
+      "name": "Comunicação",
+      "level": 90
+    },
+    {
+      "name": "Trabalho em Equipe",
+      "level": 85
+    },
+    {
+      "name": "Resolução de Problemas",
+      "level": 80
+    },
+    {
+      "name": "Adaptabilidade",
+      "level": 75
+    },
+    {
+      "name": "Gestão de Tempo",
+      "level": 70
+    }
+  ],
+  "idiomas": [
+    {
+      "name": "Português",
+      "level": 100
+    },
+    {
+      "name": "Inglês",
+      "level": 62.4
+    }
+  ],
   "experience": [
     {
       "period": "2025 — Atual",
