@@ -193,11 +193,11 @@
         },
         {
           "name": "Trabalho em Equipe",
-          "level": 85
+          "level": 92
         },
         {
           "name": "Resolução de Problemas",
-          "level": 80
+          "level": 96
         },
         {
           "name": "Adaptabilidade",
@@ -210,7 +210,8 @@
       ]
     }
   ],
-  "idiomas": [
+  "group": "Idiomas",
+      "items": [
     {
       "name": "Português",
       "level": 100
