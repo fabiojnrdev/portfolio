@@ -2,8 +2,8 @@
   "name": "Fábio Júnior",
   "firstName": "Fábio",
   "lastName": "Júnior",
-  "label": "Desenvolvedor & Estudante",
-  "bio": "Estudante de Ciência da Computação no 3º Período. Desenvolvedor com foco em back-end e em construir interfaces limpas e sistemas bem arquitetados.",
+  "label": "Back-end Developer | Front-end Enthusiast",
+  "bio": "Estudante de Ciência da Computação no 4º Período. Desenvolvedor com foco em back-end e em construir interfaces limpas e sistemas bem arquitetados.",
   "contact": {
     "tagline": "Aberto a oportunidades e colaborações",
     "sub": "Seja um projeto freelance, estágio, ou só uma conversa sobre tecnologia — pode entrar em contato.",
@@ -11,12 +11,12 @@
   },
   "stats": [
     {
-      "value": "3°",
+      "value": "4°",
       "label": "Período"
     },
     {
       "value": "04",
-      "label": "Em Destaque"
+      "label": "Projetos Em Destaque"
     },
     {
       "value": "22",
