@@ -11,8 +11,8 @@
   },
   "stats": [
     {
-      "value": "4°",
-      "label": "Período"
+      "value": "12+",
+      "label": "Tecnologias"
     },
     {
       "value": "04",
@@ -20,7 +20,7 @@
     },
     {
       "value": "22",
-      "label": "Repositórios"
+      "label": "Repositórios ao momento"
     }
   ],
   "social": {
@@ -62,54 +62,123 @@
     {
       "group": "Frontend",
       "items": [
-        { "name": "HTML5", "level": 90 },
-        { "name": "CSS3", "level": 90 },
-        { "name": "JavaScript", "level": 72.5 },
-        { "name": "Fetch API", "level": 65 },
-        { "name": "React", "level": 65 },
-        { "name": "TypeScript", "level": 60 }
+        {
+          "name": "HTML5",
+          "level": 90
+        },
+        {
+          "name": "CSS3",
+          "level": 90
+        },
+        {
+          "name": "JavaScript",
+          "level": 72.5
+        },
+        {
+          "name": "Fetch API",
+          "level": 65
+        },
+        {
+          "name": "React",
+          "level": 65
+        },
+        {
+          "name": "TypeScript",
+          "level": 60
+        }
       ]
     },
     {
       "group": "Backend",
       "items": [
-        { "name": "APIs REST", "level": 85.5 },
-        { "name": "Django", "level": 84.1 },
-        { "name": "FastAPI", "level": 87 },
-        { "name": "Python", "level": 91.2 }
+        {
+          "name": "APIs REST",
+          "level": 85.5
+        },
+        {
+          "name": "Django",
+          "level": 84.1
+        },
+        {
+          "name": "FastAPI",
+          "level": 87
+        },
+        {
+          "name": "Python",
+          "level": 91.2
+        }
       ]
     },
     {
       "group": "Banco de Dados",
       "items": [
-        { "name": "MySQL", "level": 85 },
-        { "name": "PostgreSQL", "level": 85 },
-        { "name": "SQL", "level": 85 }
+        {
+          "name": "MySQL",
+          "level": 85
+        },
+        {
+          "name": "PostgreSQL",
+          "level": 85
+        },
+        {
+          "name": "SQL",
+          "level": 85
+        }
       ]
     },
     {
       "group": "Ferramentas",
       "items": [
-        { "name": "Git & GitHub", "level": 87 },
-        { "name": "VS Code", "level": 90 },
-        { "name": "Docker", "level": 65 }
+        {
+          "name": "Git & GitHub",
+          "level": 87
+        },
+        {
+          "name": "VS Code",
+          "level": 90
+        },
+        {
+          "name": "Docker",
+          "level": 65
+        }
       ]
     },
     {
       "group": "Fundamentos",
       "items": [
-        { "name": "Algoritmos", "level": 85 },
-        { "name": "Estrutura de Dados", "level": 52 },
-        { "name": "Lógica de Programação", "level": 89.1 },
-        { "name": "POO", "level": 75 }
+        {
+          "name": "Algoritmos",
+          "level": 85
+        },
+        {
+          "name": "Estrutura de Dados",
+          "level": 52
+        },
+        {
+          "name": "Lógica de Programação",
+          "level": 89.1
+        },
+        {
+          "name": "POO",
+          "level": 75
+        }
       ]
     },
     {
       "group": "Em progresso",
       "items": [
-        { "name": "Java", "level": 63 },
-        { "name": "Machine Learning", "level": 61 },
-        { "name": "Spring Boot", "level": 54 }
+        {
+          "name": "Java",
+          "level": 63
+        },
+        {
+          "name": "Machine Learning",
+          "level": 61
+        },
+        {
+          "name": "Spring Boot",
+          "level": 54
+        }
       ]
     }
   ],
