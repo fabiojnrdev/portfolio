@@ -3,14 +3,12 @@
   "firstName": "Fábio",
   "lastName": "Júnior",
   "label": "Back-end Developer | Front-end Enthusiast",
-
   "bio": {
     "intro": "Desenvolvedor de software apaixonado por tecnologia.",
     "education": "Formação técnica em Desenvolvimento de Sistemas pelo Instituto Federal do Piauí e atualmente cursando o 4º período de Ciência da Computação na UniFAPI.",
     "experience": "Experiência com desenvolvimento web, APIs REST e bancos de dados.",
     "goal": "Busco constantemente aprimorar minhas habilidades e contribuir para projetos inovadores."
   },
-
   "contact": {
     "tagline": "Aberto a oportunidades e colaborações",
     "sub": "Seja um projeto freelance, estágio ou apenas uma conversa sobre tecnologia, pode entrar em contato.",
@@ -37,7 +35,7 @@
   },
   "projects": [
     {
-      "title": "[Genai Food]",
+      "title": "Genai Food",
       "description": "Adicione aqui a descrição real deste projeto.",
       "tags": [
         "FastAPI",
@@ -51,10 +49,18 @@
       "demo": ""
     },
     {
-      "title": "[ Projeto 02 — a definir ]",
-      "description": "Adicione aqui a descrição real deste projeto.",
-      "tags": [],
-      "url": "https://github.com/fabiojnrdev",
+      "title": "API Geek",
+      "description": "Projeto de API Geek construido com FastAPI e TypeScript, com a principal finalidade sendo simular uma mini loja geek.",
+      "tags": [
+        "FastAPI",
+        "Python",
+        "HTML",
+        "CSS",
+        "TypeScript",
+        "React",
+        "JavaScript"
+      ],
+      "url": "https://github.com/fabiojnrdev/geek_api",
       "demo": ""
     },
     {
@@ -214,7 +220,7 @@
       "period": "2023 — 2024",
       "title": "Técnico em Desenvolvimento de Sistemas",
       "org": "Instituto Federal do Piauí — Concluído",
-      "description": "Minha formação técnica em desenvolvimento de sistemas com ênfase em desenvolvimento de software, onde desenvolvi conhecimentos práticos em lógica, linguagens de programação, bancos de dados e metodologias ágeis."
+      "description": "Formação técnica em desenvolvimento de sistemas com ênfase em desenvolvimento de software, onde desenvolvi conhecimentos práticos em lógica, linguagens de programação, bancos de dados e metodologias ágeis, com destaque maior para a metodologia Scrum."
     },
     {
       "period": "2023",
