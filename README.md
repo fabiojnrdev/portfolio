@@ -13,8 +13,8 @@ Este é o meu portfólio, onde ele consiste em uma apresentação pessoal, e faz
 ```
 /
 ├── assets/
-│   └── img/
-│       └── avatar.png        ← Substitua pela sua foto
+│   └── icons/
+│       └── github.svg        ← Icon do Github
 ├── css/
 │   └── style.css
 ├── data/
