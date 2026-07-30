@@ -30,7 +30,7 @@
   },
   "projects": [
     {
-      "title": "[Genai Food]",
+      "title": "Genai Food - Em produção",
       "description": "Adicione aqui a descrição real deste projeto.",
       "tags": [
         "FastAPI",
@@ -44,17 +44,21 @@
       "demo": ""
     },
     {
-      "title": "[ Projeto 02 — a definir ]",
-      "description": "Adicione aqui a descrição real deste projeto.",
-      "tags": [],
-      "url": "https://github.com/fabiojnrdev",
+      "title": "API Geek Store",
+      "description": "API REST simulada de gerenciamento de loja geek com produtos de animes, games e mangás.",
+      "tags": [
+        "FastAPI, Python, TypeScript, React, HTML, CSS, JavaScript"
+      ],
+      "url": "https://github.com/fabiojnrdev/geek_api",
       "demo": ""
     },
     {
-      "title": "[ Projeto 03 — a definir ]",
-      "description": "Adicione aqui a descrição real deste projeto.",
-      "tags": [],
-      "url": "https://github.com/fabiojnrdev",
+      "title": "FitTrack Pro - Em produção",
+      "description": "Plataforma de acompanhamento de treinos e nutrição. Back-end em Java com Spring Boot, autenticação JWT, API REST completa. Front-end em React com dashboards e gráficos de evolução. Banco PostgreSQL com relatórios semanais automáticos.",
+      "tags": [
+        "Java, Spring Boot, PostgreSQL, JWT, API REST"
+      ],
+      "url": "https://github.com/fabiojnrdev/fitrack-pro",
       "demo": ""
     },
     {
