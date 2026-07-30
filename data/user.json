@@ -3,7 +3,7 @@
   "firstName": "Fábio",
   "lastName": "Júnior",
   "label": "Back-end Developer | Front-end Enthusiast",
-  "bio": "Estudante de Ciência da Computação no 4º Período. Desenvolvedor com foco em back-end e em construir interfaces limpas e sistemas bem arquitetados.",
+  "bio": "Desenvolvedor de software apaixonado por tecnologia. Formação técnica em Desenvolvimento de Sistemas pelo Instituto Federal do Piauí, e atualmente no 4° Período do Bacharelado em Ciência da Computação na UniFAPI. Com experiência em desenvolvimento web, APIs REST e bancos de dados, busco constantemente aprimorar minhas habilidades e contribuir para projetos inovadores.",
   "contact": {
     "tagline": "Aberto a oportunidades e colaborações",
     "sub": "Seja um projeto freelance, estágio, ou só uma conversa sobre tecnologia — pode entrar em contato.",
@@ -30,9 +30,16 @@
   },
   "projects": [
     {
-      "title": "[ Projeto 01 — a definir ]",
+      "title": "[Genai Food]",
       "description": "Adicione aqui a descrição real deste projeto.",
-      "tags": [],
+      "tags": [
+        "FastAPI",
+        "Python",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React"
+      ],
       "url": "https://github.com/fabiojnrdev",
       "demo": ""
     },
@@ -152,7 +159,7 @@
         },
         {
           "name": "Estrutura de Dados",
-          "level": 52
+          "level": 75
         },
         {
           "name": "Lógica de Programação",
