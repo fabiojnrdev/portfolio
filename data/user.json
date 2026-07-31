@@ -71,10 +71,17 @@
       "demo": ""
     },
     {
-      "title": "[ Projeto 04 — a definir ]",
-      "description": "Adicione aqui a descrição real deste projeto.",
-      "tags": [],
-      "url": "https://github.com/fabiojnrdev",
+      "title": "Audit System - Em produção",
+      "description": "Sistema de auditoria empresarial com interceptação automática de eventos, dashboard em tempo real, exportação com integridade criptográfica e WebSocket para logs ao vivo.",
+      "tags": [
+        "Docker",
+        "Django",
+        "Python",
+        "React",
+        "JWT",
+        "PostgreSQL"
+      ],
+      "url": "https://github.com/fabiojnrdev/audit-system",
       "demo": ""
     }
   ],
@@ -159,7 +166,7 @@
         },
         {
           "name": "Docker",
-          "level": 65
+          "level": 72.5
         }
       ]
     },
@@ -210,7 +217,7 @@
     "Gestão de Tempo",
     "Pensamento Crítico",
     "Proatividade",
-    "Perfil analítico"
+    "Perfil Analítico"
   ],
   "experience": [
     {
