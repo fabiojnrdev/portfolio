@@ -833,6 +833,89 @@ section {
   text-align: center;
 }
 
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  background: hsla(var(--hue), 40%, 8%, 0.55);
+  border: 0.5px solid var(--border-mid);
+  padding: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.form-field input,
+.form-field textarea {
+  background: hsla(var(--hue), 42%, 3%, 0.7);
+  border: 0.5px solid var(--border-mid);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px; /* evita zoom automático em iOS ao focar */
+  padding: 12px 14px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 110px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px hsla(var(--hue), 85%, 71%, 0.12);
+}
+
+.form-field input:invalid:not(:placeholder-shown),
+.form-field textarea:invalid:not(:placeholder-shown) {
+  border-color: hsl(calc(var(--hue) + 130), 60%, 55%);
+}
+
+.form-submit {
+  align-self: flex-start;
+}
+
+.form-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  min-height: 14px;
+}
+
+.form-note.success { color: var(--violet); }
+.form-note.error   { color: hsl(calc(var(--hue) + 130), 65%, 65%); }
+
 /* menu linear de contato: fica em linha (row) e rola na horizontal
    quando não cabe. A barra de rolagem some por padrão e "pop-in" por
    ~1.6s (classe .scrollbar-peek, ligada via JS em main.js) assim que
@@ -1005,7 +1088,43 @@ footer {
 }
 
 /* ============================================================
-   RESPONSIVE — TABLETS (600–900px)
+   RESPONSIVE — base fluida (afeta todas as resoluções)
+   Padding e tipografia usam clamp() para não depender só de
+   breakpoints fixos — a interface se ajusta continuamente entre
+   um celular de 320px e um monitor de 2560px.
+   ============================================================ */
+section {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4.5vw, 3.5rem);
+}
+
+.section-title {
+  font-size: clamp(26px, 3.4vw, 34px);
+}
+
+.contact-tagline {
+  font-size: clamp(24px, 3.6vw, 32px);
+}
+
+/* limita a largura do conteúdo em monitores ultra-wide sem perder o
+   fundo full-bleed das seções (que continuam ocupando 100% da tela) */
+.skills-grid,
+.projects-grid,
+.experience-list,
+.contact-grid {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   RESPONSIVE — LAPTOPS PEQUENOS / TELAS 1024–1200px
+   ============================================================ */
+@media (max-width: 1200px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   RESPONSIVE — TABLETS (≤900px)
    ============================================================ */
 @media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
@@ -1021,8 +1140,8 @@ footer {
   }
 
   .hero-visual {
-    min-height: 320px;
-    padding: 3rem 1.5rem;
+    min-height: 340px;
+    padding: 2rem 1.5rem;
   }
 
   .hero-stats {
@@ -1033,11 +1152,7 @@ footer {
     flex-wrap: wrap;
   }
 
-  section { padding: 3rem 1.5rem; }
-
   .projects-grid { grid-template-columns: 1fr; }
-
-  .skills-grid { grid-template-columns: 1fr 1fr; }
 
   .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 
@@ -1050,15 +1165,50 @@ footer {
 }
 
 /* ============================================================
-   RESPONSIVE — MOBILE (<480px)
+   RESPONSIVE — TELAS MÉDIAS / PHABLETS (≤640px)
+   habilidades e formulário já viram coluna única aqui, antes do
+   corte de "celular pequeno" — evita texto espremido em telas tipo
+   iPhone Plus/Max e Android grandes em pé.
+   ============================================================ */
+@media (max-width: 640px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤480px)
    ============================================================ */
 @media (max-width: 480px) {
   h1 { font-size: 42px; }
-  .section-title { font-size: 27px; }
-  .skills-grid { grid-template-columns: 1fr; }
-  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
 
   .hero-actions { flex-direction: column; align-items: flex-start; }
-
   .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+
+  .contact-form { padding: 1.5rem; }
+  .form-submit { align-self: stretch; text-align: center; }
+
+  .stat-num { font-size: 26px; }
+  .hero-stats { gap: 1.5rem; }
+}
+
+/* ============================================================
+   RESPONSIVE — TELAS MUITO PEQUENAS (≤360px)
+   iPhone SE, Android compactos e afins.
+   ============================================================ */
+@media (max-width: 360px) {
+  h1 { font-size: 36px; }
+  .hero-bio { max-width: 100%; }
+  .contact-link { padding: 0.85rem 0.8rem; }
+  .contact-link-value { font-size: 11px; }
+}
+
+/* ============================================================
+   RESPONSIVE — ALTURA CURTA / PAISAGEM EM CELULAR
+   Evita hero com scroll gigante quando a tela é larga e baixa.
+   ============================================================ */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { min-height: auto; }
+  .hero-visual { min-height: 220px; }
+  .hero-text { padding: 2rem 1.5rem; }
 }

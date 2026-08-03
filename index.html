@@ -110,6 +110,33 @@
         <p class="contact-tagline" id="contact-tagline"></p>
         <p class="contact-sub"     id="contact-sub"></p>
       </div>
+
+      <!-- Mini formulário de orçamento — ao enviar, abre o cliente de
+           email do visitante com tudo preenchido, endereçado ao email
+           de contato definido em data/user.json. -->
+      <form class="contact-form fade-up" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="seu@email.com">
+          </div>
+          <div class="form-field">
+            <label for="cf-phone">Telefone</label>
+            <input type="tel" id="cf-phone" name="phone" required autocomplete="tel" placeholder="(00) 00000-0000">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cf-project">Nome do projeto</label>
+          <input type="text" id="cf-project" name="project" required placeholder="Ex: Sistema de gestão financeira">
+        </div>
+        <div class="form-field">
+          <label for="cf-desc">Descrição do projeto</label>
+          <textarea id="cf-desc" name="description" required rows="5" placeholder="Escopo, prazo estimado e orçamento aproximado."></textarea>
+        </div>
+        <button type="submit" class="btn-primary form-submit">Solicitar orçamento</button>
+        <p class="form-note" id="form-note" aria-live="polite"></p>
+      </form>
+
       <div class="contact-links fade-left" id="contact-links"></div>
     </div>
   </section>

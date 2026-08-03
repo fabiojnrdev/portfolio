@@ -264,7 +264,14 @@ const ColorCycle = (() => {
   }
 
   resize();
-  window.addEventListener("resize", resize);
+  // ResizeObserver cobre qualquer mudança de layout do container (rotação,
+  // breakpoint, zoom, DevTools abrindo) — mais confiável que só "resize" da
+  // janela pra garantir que a galáxia se adapte a qualquer resolução/dispositivo.
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(resize).observe(canvas.parentElement);
+  } else {
+    window.addEventListener("resize", resize);
+  }
   canvas.addEventListener("pointermove", setPointerFromEvent);
   canvas.addEventListener("pointerleave", () => { pointer.active = false; });
   canvas.addEventListener("pointerdown", e => {
@@ -332,6 +339,7 @@ async function loadPortfolio() {
     renderExperience(user.experience);
     renderContact(user);
     renderFooter(user);
+    initContactForm(user);
 
     requestAnimationFrame(() => {
       initScrollAnimations();
@@ -537,6 +545,59 @@ function renderContact(user) {
         <span class="contact-link-arrow">↗</span>
       </a>`;
   }).join("");
+}
+
+/* ── CONTACT FORM (orçamento) ─────────────────────────────
+   Este site é estático, sem backend e sem chave de API configurada.
+   Por isso o envio real é feito via mailto: — o formulário monta o
+   assunto e o corpo do email e abre o cliente de email do próprio
+   visitante, já endereçado para o email de contato do data/user.json,
+   pronto pra ele clicar em "enviar". Não é envio silencioso via
+   servidor: se algum dia você quiser isso, precisa de um serviço tipo
+   Formspree/EmailJS (ou uma function própria) com uma chave — aí sim
+   dá pra tirar o mailto e mandar direto sem abrir o cliente de email. */
+function initContactForm(user) {
+  const form   = document.getElementById("contact-form");
+  const note   = document.getElementById("form-note");
+  const toMail = user?.contact?.email;
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (!toMail) {
+      note.textContent = "Email de contato não configurado em data/user.json.";
+      note.className = "form-note error";
+      return;
+    }
+
+    const email       = form.email.value.trim();
+    const phone       = form.phone.value.trim();
+    const projectName = form.project.value.trim();
+    const description = form.description.value.trim();
+
+    const subject = `Orçamento de projeto: ${projectName}`;
+    const body =
+      `Nome do projeto: ${projectName}\n` +
+      `Email para retorno: ${email}\n` +
+      `Telefone: ${phone}\n\n` +
+      `Descrição:\n${description}`;
+
+    const mailtoUrl =
+      `mailto:${encodeURIComponent(toMail)}` +
+      `?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoUrl;
+
+    note.textContent = "Abrindo seu cliente de email com os dados preenchidos...";
+    note.className = "form-note success";
+  });
 }
 
 /* ── CONTACT SCROLLBAR POP-IN ─────────────────────────────
