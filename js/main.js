@@ -530,9 +530,9 @@ function renderContact(user) {
   if (user.social?.instagram) {
     items.push({ label: "Instagram", value: user.social.instagram.replace("https://instagram.com/", ""),  href: user.social.instagram });
   }
-  if (user.contact?.email) {
-    items.push({ label: "Email",     value: user.contact.email, href: `mailto:${user.contact.email}` });
-  }
+  // Email não entra no menu linear de propósito: fica exclusivo do
+  // formulário de orçamento (initContactForm), que já usa
+  // user.contact.email para montar o mailto.
 
   links.innerHTML = items.map((item, i) => {
     const attrs = item.href.startsWith("mailto:")
