@@ -1174,6 +1174,25 @@ section {
   .skills-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+  /* Com só 3 itens (GitHub/LinkedIn/Instagram), empilhar em coluna
+     resolve de vez o corte de item na borda que o scroll horizontal
+     causava — não sobra conteúdo pra "vazar" da tela. */
+  .contact-links {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .contact-link {
+    justify-content: space-between;
+    text-align: left;
+    border-right: none;
+    border-bottom: 0.5px solid var(--border-mid);
+  }
+
+  .contact-link:last-child {
+    border-bottom: none;
+  }
 }
 
 /* ============================================================
