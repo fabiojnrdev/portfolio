@@ -31,7 +31,7 @@
   "projects": [
     {
       "title": "Genai Food - Em produção",
-      "description": "API simulada de um agente para restaurante, que envolve machine learning e aceleração de processos em demandas.",
+      "description": "API de um agente para restaurante, que envolve machine learning e aceleração de processos em demandas.",
       "tags": [
         "FastAPI",
         "Python",
@@ -99,7 +99,7 @@
         },
         {
           "name": "JavaScript",
-          "level": 72.5
+          "level": 84.5
         },
         {
           "name": "Fetch API",
