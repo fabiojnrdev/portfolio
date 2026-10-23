@@ -19,8 +19,8 @@
       "label": "Projetos Em Destaque"
     },
     {
-      "value": "24",
-      "label": "Repositórios ao momento"
+      "value": "25+",
+      "label": "Repositórios"
     }
   ],
   "social": {
@@ -221,7 +221,7 @@
   ],
   "experience": [
     {
-      "period": "2025 — Atual",
+      "period": "2025 - em andamento",
       "title": "Ciência da Computação",
       "org": "UniFAPI — 4º Período",
       "description": "Bacharel em Ciência da Computação pela UniFAPI (em andamento), com foco em fundamentos de computação, algoritmos, estruturas de dados, desenvolvimento de software e regras de negócio."
