@@ -72,7 +72,7 @@
     },
     {
       "title": "Piauí - Landing Page",
-      "description": "Sistema de auditoria empresarial com interceptação automática de eventos, dashboard em tempo real, exportação com integridade criptográfica e WebSocket para logs ao vivo.",
+      "description": "Meu projeto que representa o estado do Piauí, com informações sobre cultura, turismo e economia. Desenvolvido com Vite e React.js, mostrando força no front-end e no desenvolvimento web moderno e responsivo.",
       "tags": [
         "Vite",
         "Django",
@@ -113,14 +113,14 @@
           "name": "TypeScript",
           "level": 60
         },
-      {
-        "name": "Vite",
-        "level": 67
-      },
-      {
-        "name": "Tailwind CSS",
-        "level": 70
-      }
+        {
+          "name": "Vite",
+          "level": 67
+        },
+        {
+          "name": "Tailwind CSS",
+          "level": 70
+        }
       ]
     },
     {
