@@ -75,11 +75,10 @@
       "description": "Meu projeto que representa o estado do Piauí, com informações sobre cultura, turismo e economia. Desenvolvido com Vite e React.js, mostrando força no front-end e no desenvolvimento web moderno e responsivo.",
       "tags": [
         "Vite",
-        "Django",
+        "JavaScript",
         "React.js",
-        "React",
-        "JWT",
-        "PostgreSQL"
+        "HTML",
+        "CSS"
       ],
       "url": "https://github.com/fabiojnrdev/piaui",
       "demo": ""
