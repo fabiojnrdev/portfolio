@@ -19,7 +19,7 @@
       "label": "Projetos Em Destaque"
     },
     {
-      "value": "25",
+      "value": "27",
       "label": "Repositórios ao momento"
     }
   ],
@@ -71,17 +71,17 @@
       "demo": ""
     },
     {
-      "title": "Audit System - Em produção",
+      "title": "Piauí - Landing Page",
       "description": "Sistema de auditoria empresarial com interceptação automática de eventos, dashboard em tempo real, exportação com integridade criptográfica e WebSocket para logs ao vivo.",
       "tags": [
-        "Docker",
+        "Vite",
         "Django",
-        "Python",
+        "React.js",
         "React",
         "JWT",
         "PostgreSQL"
       ],
-      "url": "https://github.com/fabiojnrdev/audit-system",
+      "url": "https://github.com/fabiojnrdev/piaui",
       "demo": ""
     }
   ],
@@ -106,13 +106,21 @@
           "level": 65
         },
         {
-          "name": "React",
+          "name": "React.js",
           "level": 70
         },
         {
           "name": "TypeScript",
           "level": 60
-        }
+        },
+      {
+        "name": "Vite",
+        "level": 67
+      },
+      {
+        "name": "Tailwind CSS",
+        "level": 70
+      }
       ]
     },
     {
@@ -196,15 +204,15 @@
       "items": [
         {
           "name": "Java",
-          "level": 63
+          "level": 79
         },
         {
           "name": "Machine Learning",
-          "level": 61
+          "level": 70
         },
         {
           "name": "Spring Boot",
-          "level": 54
+          "level": 65
         }
       ]
     }
