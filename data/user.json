@@ -30,17 +30,16 @@
   },
   "projects": [
     {
-      "title": "Genai Food - Em produção",
+      "title": "TalentMatch - Em produção",
       "description": "API de um agente para restaurante, que envolve machine learning e aceleração de processos em demandas.",
       "tags": [
         "FastAPI",
-        "Python",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React"
+        "Pydantic",
+        "OpenAI API / Instructor",
+        "Pytest",
+        "Docker"
       ],
-      "url": "https://github.com/fabiojnrdev/genai_food",
+      "url": "https://github.com/fabiojnrdev/talentmatch",
       "demo": ""
     },
     {
@@ -58,16 +57,16 @@
       "demo": ""
     },
     {
-      "title": "FitTrack Pro - Em produção",
+      "title": "CustomerCare RAG - Em produção",
       "description": "Plataforma de acompanhamento de treinos e nutrição. Back-end em Java com Spring Boot, autenticação JWT, API REST completa. Front-end em React com dashboards e gráficos de evolução. Banco PostgreSQL com relatórios semanais automáticos.",
       "tags": [
-        "Java",
-        "Spring Boot",
-        "PostgreSQL",
-        "JWT",
-        "API REST"
+        "FastAPI",
+        "LangChain",
+        "pgvector",
+        "BM25",
+        "Cohere Rerank"
       ],
-      "url": "https://github.com/fabiojnrdev/fitrack-pro",
+      "url": "https://github.com/fabiojnrdev/customercare-rag",
       "demo": ""
     },
     {
